@@ -1,4 +1,4 @@
-package com.example.apptoapp.android.ui.settings
+package com.snoy.apptoapp.android.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.apptoapp.android.databinding.FragmentSettingsBinding
+import com.snoy.apptoapp.android.databinding.FragmentHomeBinding
 
-class SettingsFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private lateinit var settingsViewModel: SettingsViewModel
-    private var _binding: FragmentSettingsBinding? = null
+    private lateinit var homeViewModel: HomeViewModel
+    private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,14 +23,14 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        settingsViewModel =
-            ViewModelProvider(this).get(SettingsViewModel::class.java)
+        homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSettings
-        settingsViewModel.text.observe(viewLifecycleOwner, {
+        val textView: TextView = binding.textHome
+        homeViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root
