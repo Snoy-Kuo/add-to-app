@@ -6,7 +6,7 @@ class MyHomePage extends StatelessWidget {
 
   final String? title;
 
-  MyHomePage([this.title]);
+  const MyHomePage([this.title]);
 
   @override
   Widget build(BuildContext context) {
