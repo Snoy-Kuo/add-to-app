@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.snoy.apptoapp.android.databinding.FragmentSettingsBinding
+import io.flutter.embedding.android.FlutterActivity
 
 class SettingsFragment : Fragment() {
 
@@ -33,6 +34,9 @@ class SettingsFragment : Fragment() {
         settingsViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
+        textView.setOnClickListener {
+            startActivity(FlutterActivity.createDefaultIntent(requireActivity()))
+        }
         return root
     }
 

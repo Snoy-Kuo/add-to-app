@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.snoy.apptoapp.android.R
 import com.snoy.apptoapp.android.databinding.ActivityMainBinding
-import com.snoy.apptoapp.android.ui.home.HomeFragment
 import com.snoy.apptoapp.android.ui.settings.SettingsFragment
 import io.flutter.embedding.android.FlutterFragment
 
@@ -17,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var fragment1: HomeFragment
     private var fragmentFlutter: FlutterFragment? = null
     private lateinit var fragment2: SettingsFragment
     private lateinit var fragments: ArrayList<Fragment>
@@ -74,8 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFragments() {
         fragmentFlutter = FlutterFragment.createDefault()
-        fragment1 = HomeFragment()
-        val initFrg: Fragment = fragmentFlutter!! //fragment1
+        val initFrg: Fragment = fragmentFlutter!!
         fragment2 = SettingsFragment()
         fragments = arrayListOf(initFrg, fragment2)
         lastShowFragment = 0
