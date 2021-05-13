@@ -12,7 +12,7 @@
         <!--Settings-->
         <scene sceneID="nSO-be-H19">
             <objects>
-                <viewController id="BBE-O1-P7R" sceneMemberID="viewController">
+                <viewController id="BBE-O1-P7R" customClass="SettingsViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bao-7v-eOE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,6 +34,9 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="W9j-fO-x8j">
                         <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="lbCenter" destination="xOj-Tf-oMu" id="RTi-6G-vgw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0Y-vI-h7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -42,7 +45,7 @@
         <!--Home-->
         <scene sceneID="ZvF-AW-4Zq">
             <objects>
-                <viewController id="JFs-Dj-ckK" sceneMemberID="viewController">
+                <viewController id="JFs-Dj-ckK" customClass="HomeViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Io-2I-7cA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
