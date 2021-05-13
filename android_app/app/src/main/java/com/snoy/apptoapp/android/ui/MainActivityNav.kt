@@ -1,4 +1,4 @@
-package com.snoy.apptoapp.android
+package com.snoy.apptoapp.android.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,10 +6,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.snoy.apptoapp.android.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.snoy.apptoapp.android.R
+import com.snoy.apptoapp.android.databinding.ActivityMainBinding
+import io.flutter.FlutterInjector
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.dart.DartExecutor
 
-class MainActivity : AppCompatActivity() {
+class MainActivityNav : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
