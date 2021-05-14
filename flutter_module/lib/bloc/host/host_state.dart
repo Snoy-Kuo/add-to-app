@@ -10,10 +10,11 @@ class HostInitial extends HostState {
 }
 
 class HostOpenUrl extends HostState {
+  final int _time = DateTime.now().millisecondsSinceEpoch;
   final String url;
 
   HostOpenUrl({required this.url});
 
   @override
-  List<Object?> get props => [url];
+  List<Object?> get props => [url, _time];
 }

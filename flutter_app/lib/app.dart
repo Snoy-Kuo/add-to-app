@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: _title,
       routes: {
         '/': (context) => MainPage(),
-        '/web': (context) => WebViewExample(),
+        '/web': (context) => WebViewPage(),
       },
     );
   }
