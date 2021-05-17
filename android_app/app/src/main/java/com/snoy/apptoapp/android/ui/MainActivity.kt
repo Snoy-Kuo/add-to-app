@@ -1,22 +1,24 @@
 package com.snoy.apptoapp.android.ui
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.NonNull
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.snoy.apptoapp.android.R
 import com.snoy.apptoapp.android.databinding.ActivityMainBinding
+import com.snoy.apptoapp.android.ui.home.HomeFragment
+import com.snoy.apptoapp.android.ui.home.NativeHomeFragment
 import com.snoy.apptoapp.android.ui.settings.SettingsFragment
-import io.flutter.embedding.android.FlutterFragment
+import com.snoy.apptoapp.android.util.hideSystemUI
 
 class MainActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityMainBinding
-    private var fragmentFlutter: FlutterFragment? = null
+
+    private var fragmentFlutter: HomeFragment? = null
+    private lateinit var fragment1: NativeHomeFragment
     private lateinit var fragment2: SettingsFragment
     private lateinit var fragments: ArrayList<Fragment>
     private var lastShowFragment: Int = 0
@@ -31,10 +33,17 @@ class MainActivity : AppCompatActivity() {
                         return@OnNavigationItemSelectedListener true
                     }
                 }
-                R.id.navigation_settings -> {
+                R.id.navigation_flutter_home -> {
                     if (lastShowFragment != 1) {
                         switchFragment(lastShowFragment, 1)
                         lastShowFragment = 1
+                        return@OnNavigationItemSelectedListener true
+                    }
+                }
+                R.id.navigation_settings -> {
+                    if (lastShowFragment != 2) {
+                        switchFragment(lastShowFragment, 2)
+                        lastShowFragment = 2
                         return@OnNavigationItemSelectedListener true
                     }
                 }
@@ -53,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         initFragments()
 
+        hideSystemUI()
     }
 
     /**
@@ -62,19 +72,24 @@ class MainActivity : AppCompatActivity() {
      * @param index     需要显示的Fragment的索引
      */
     private fun switchFragment(lastIndex: Int, index: Int) {
+        Log.d("RDTest", "switchFragment(lastIndex=$lastIndex, index=$index)")
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.hide(fragments[lastIndex])
         if (!fragments[index].isAdded) {
             transaction.add(R.id.fragment_container, fragments[index])
         }
-        transaction.show(fragments[index]).commitAllowingStateLoss()
+        transaction.show(fragments[index]).commitNowAllowingStateLoss() //commitAllowingStateLoss()
     }
 
     private fun initFragments() {
-        fragmentFlutter = FlutterFragment.createDefault()
-        val initFrg: Fragment = fragmentFlutter!!
+        Log.d("RDTest", "initFragments")
+        fragment1 = NativeHomeFragment()
+        fragmentFlutter = HomeFragment()
         fragment2 = SettingsFragment()
-        fragments = arrayListOf(initFrg, fragment2)
+
+        val initFrg: Fragment = fragment1//fragmentFlutter!!
+
+        fragments = arrayListOf(initFrg, fragmentFlutter!!, fragment2)
         lastShowFragment = 0
         supportFragmentManager
             .beginTransaction()
@@ -83,38 +98,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    override fun onPostResume() {
-        super.onPostResume()
-        fragmentFlutter?.onPostResume()
-    }
-
-    override fun onNewIntent(@NonNull intent: Intent) {
-        super.onNewIntent(intent)
-        fragmentFlutter?.onNewIntent(intent)
-    }
-
     override fun onBackPressed() {
-        fragmentFlutter?.onBackPressed()
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        fragmentFlutter?.onRequestPermissionsResult(
-            requestCode,
-            permissions,
-            grantResults
-        )
-    }
-
-    override fun onUserLeaveHint() {
-        fragmentFlutter?.onUserLeaveHint()
-    }
-
-    override fun onTrimMemory(level: Int) {
-        super.onTrimMemory(level)
-        fragmentFlutter?.onTrimMemory(level)
+        finish()
     }
 }

@@ -1,5 +1,6 @@
 package com.snoy.apptoapp.android.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.snoy.apptoapp.android.databinding.FragmentSettingsBinding
+import com.snoy.apptoapp.android.ui.WebViewActivity
 import io.flutter.embedding.android.FlutterActivity
 
 class SettingsFragment : Fragment() {
@@ -35,7 +37,12 @@ class SettingsFragment : Fragment() {
             textView.text = it
         })
         textView.setOnClickListener {
-            startActivity(FlutterActivity.createDefaultIntent(requireActivity()))
+//            startActivity(FlutterActivity.createDefaultIntent(requireActivity()))
+//            WebViewActivity.openActivity(context = requireContext(), url = "https://www.google.com")
+            val intent = Intent(context, WebViewActivity::class.java).apply {
+                putExtra("url", "https://www.google.com")
+            }
+            context?.startActivity(intent)
         }
         return root
     }
