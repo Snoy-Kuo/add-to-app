@@ -36,11 +36,59 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="lbCenter" destination="xOj-Tf-oMu" id="RTi-6G-vgw"/>
+                        <segue destination="xR4-Sa-btw" kind="presentation" identifier="SettingsToWebView" modalPresentationStyle="fullScreen" id="Rrj-qa-IVX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0Y-vI-h7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-352" y="85"/>
+        </scene>
+        <!--WebView Title-->
+        <scene sceneID="ABH-7y-myb">
+            <objects>
+                <viewController id="xR4-Sa-btw" customClass="WebViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dYZ-d6-Ht6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NbH-TM-emZ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem title="Exit" image="xmark" catalog="system" id="qsl-eD-wQp"/>
+                                </items>
+                            </toolbar>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVH-c1-aoW">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3ta-rl-IPn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lVH-c1-aoW" firstAttribute="leading" secondItem="3ta-rl-IPn" secondAttribute="leading" id="D01-FQ-sLz"/>
+                            <constraint firstItem="NbH-TM-emZ" firstAttribute="width" secondItem="3ta-rl-IPn" secondAttribute="width" id="FAD-1p-VNc"/>
+                            <constraint firstItem="NbH-TM-emZ" firstAttribute="leading" secondItem="3ta-rl-IPn" secondAttribute="leading" id="Ftb-wH-tfa"/>
+                            <constraint firstItem="lVH-c1-aoW" firstAttribute="width" secondItem="3ta-rl-IPn" secondAttribute="width" id="GIM-Jb-TXY"/>
+                            <constraint firstItem="lVH-c1-aoW" firstAttribute="bottom" secondItem="3ta-rl-IPn" secondAttribute="bottom" id="Ju3-XS-dQC"/>
+                            <constraint firstItem="NbH-TM-emZ" firstAttribute="top" secondItem="3ta-rl-IPn" secondAttribute="top" id="QzR-hy-RvG"/>
+                            <constraint firstItem="lVH-c1-aoW" firstAttribute="top" secondItem="NbH-TM-emZ" secondAttribute="bottom" id="YDk-dK-Agq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="WebView Title" id="ztV-U7-VVl">
+                        <barButtonItem key="backBarButtonItem" title="Exit" image="xmark" catalog="system" id="7FI-zH-Baq"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="exitItem" destination="qsl-eD-wQp" id="Ksh-UO-1Pb"/>
+                        <outlet property="wvContent" destination="lVH-c1-aoW" id="bYh-z0-Gdx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="amv-Bg-4HL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="-175"/>
         </scene>
         <!--Home-->
         <scene sceneID="ZvF-AW-4Zq">
@@ -50,8 +98,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is Home VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBW-s1-PYV">
-                                <rect key="frame" x="144" y="438" width="126" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Home VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBW-s1-PYV">
+                                <rect key="frame" x="144" y="418" width="126" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -94,6 +142,7 @@
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
