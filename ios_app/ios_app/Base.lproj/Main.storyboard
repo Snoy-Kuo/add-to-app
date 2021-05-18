@@ -115,6 +115,9 @@
                     <tabBarItem key="tabBarItem" title="Home" id="A43-v4-Ps0">
                         <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
                     </tabBarItem>
+                    <connections>
+                        <segue destination="xR4-Sa-btw" kind="presentation" identifier="HomeToWebView" modalPresentationStyle="fullScreen" id="COL-ud-yyb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Re-4h-CMK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -139,6 +142,9 @@
             <point key="canvasLocation" x="-1241" y="-218"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="COL-ud-yyb"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>

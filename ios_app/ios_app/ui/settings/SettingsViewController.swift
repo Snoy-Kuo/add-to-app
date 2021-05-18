@@ -11,7 +11,7 @@ import Flutter
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var lbCenter: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -19,12 +19,12 @@ class SettingsViewController: UIViewController {
         lbCenter.isUserInteractionEnabled = true
         lbCenter.addGestureRecognizer(tap)
     }
-
+    
     @objc func showFlutter(){
         let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
-            let flutterViewController =
-                FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-            present(flutterViewController, animated: true, completion: nil)
+        let flutterViewController =
+            FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+        present(flutterViewController, animated: true, completion: nil)
     }
     
     @objc func pushWebView(){
