@@ -14,7 +14,6 @@ class App : Application() {
     private val homeEngine: FlutterEngine by lazy {
         FlutterEngine(this.applicationContext)
     }
-//    private var channel: MethodChannel? = null
 
     override fun onCreate() {
         super.onCreate()

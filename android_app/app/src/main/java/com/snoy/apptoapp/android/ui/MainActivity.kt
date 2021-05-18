@@ -1,7 +1,6 @@
 package com.snoy.apptoapp.android.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -9,7 +8,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.snoy.apptoapp.android.R
 import com.snoy.apptoapp.android.databinding.ActivityMainBinding
 import com.snoy.apptoapp.android.ui.home.HomeFragment
-import com.snoy.apptoapp.android.ui.home.NativeHomeFragment
 import com.snoy.apptoapp.android.ui.settings.SettingsFragment
 import com.snoy.apptoapp.android.util.hideSystemUI
 
@@ -18,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var fragmentFlutter: HomeFragment? = null
-    private lateinit var fragment1: NativeHomeFragment
     private lateinit var fragment2: SettingsFragment
     private lateinit var fragments: ArrayList<Fragment>
     private var lastShowFragment: Int = 0
@@ -30,13 +27,6 @@ class MainActivity : AppCompatActivity() {
                     if (lastShowFragment != 0) {
                         switchFragment(lastShowFragment, 0)
                         lastShowFragment = 0
-                        return@OnNavigationItemSelectedListener true
-                    }
-                }
-                R.id.navigation_flutter_home -> {
-                    if (lastShowFragment != 1) {
-                        switchFragment(lastShowFragment, 1)
-                        lastShowFragment = 1
                         return@OnNavigationItemSelectedListener true
                     }
                 }
@@ -72,7 +62,6 @@ class MainActivity : AppCompatActivity() {
      * @param index     需要显示的Fragment的索引
      */
     private fun switchFragment(lastIndex: Int, index: Int) {
-        Log.d("RDTest", "switchFragment(lastIndex=$lastIndex, index=$index)")
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.hide(fragments[lastIndex])
         if (!fragments[index].isAdded) {
@@ -82,12 +71,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFragments() {
-        Log.d("RDTest", "initFragments")
-        fragment1 = NativeHomeFragment()
         fragmentFlutter = HomeFragment()
         fragment2 = SettingsFragment()
 
-        val initFrg: Fragment = fragment1//fragmentFlutter!!
+        val initFrg: Fragment = fragmentFlutter!!
 
         fragments = arrayListOf(initFrg, fragmentFlutter!!, fragment2)
         lastShowFragment = 0

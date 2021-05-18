@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.snoy.apptoapp.android.databinding.FragmentSettingsBinding
 import com.snoy.apptoapp.android.ui.WebViewActivity
-import io.flutter.embedding.android.FlutterActivity
 
 class SettingsFragment : Fragment() {
 
