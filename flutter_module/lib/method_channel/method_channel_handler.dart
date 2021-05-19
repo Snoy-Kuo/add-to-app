@@ -19,7 +19,7 @@ class MethodChannelHandler {
   void _initMethodChannel() {
     _channel = MethodChannel(CHANNEL_NAME);
     _channel.setMethodCallHandler((MethodCall call) async {
-      log('MethodCallHandler call=${call.method ?? null}, args=${call.arguments}');
+      log('MethodCallHandler call=${call.method}, args=${call.arguments}');
       //TODO: pass method and args from Host App to Client bloc
       // if (call.method == "SOME_METHOD") {
       //   bloc.add(SomeEvent(call.arguments as SomeType));

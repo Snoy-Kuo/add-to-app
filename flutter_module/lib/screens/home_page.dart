@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/bloc/bloc.dart';
 import 'package:flutter_module/method_channel/method_channel_handler.dart';
 import 'package:flutter_module/widgets/banner/banner.dart';
+import 'package:flutter_module/widgets/news_ticker/news_ticker.dart';
 
 class MyHomePage extends StatelessWidget {
   static const TextStyle optionStyle =
@@ -46,6 +47,15 @@ class MyHomePage extends StatelessWidget {
               BannerView(
                 repository: MockBannerRepo(),
                 onItemClick: (item) => onBannerItemClick(item, _channelHandler),
+              ),
+              NewsTickerView(
+                repository: MockNewsRepo(),
+                onItemClick: (item) => {
+                  log('[NewsTickerView][onItemClick]item=${item?.title ?? null}')
+                },
+                onMoreClick: (item) => {
+                  log('[NewsTickerView][onMoreClick]item=${item?.title ?? null}')
+                },
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
