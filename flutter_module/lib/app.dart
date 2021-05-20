@@ -4,6 +4,7 @@ import 'package:flutter_module/screens/home_page.dart';
 
 class MyHomePageApp extends StatelessWidget {
   final String? title;
+
   MyHomePageApp([this.title]);
 
   @override

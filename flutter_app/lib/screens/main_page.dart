@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/settings_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/bloc/host/host_cubit.dart';
 import 'package:flutter_module/screens/home_page.dart';
@@ -41,10 +42,7 @@ class _MainPageState extends State<MainPage> {
           );
         }
       case 2:
-        return Text(
-          'This is Settings Widget',
-          style: optionStyle,
-        );
+        return SettingsPage();
       default:
         return Text(
           'This is Undefined Widget',
@@ -62,7 +60,8 @@ class _MainPageState extends State<MainPage> {
   }
 
   void initCubitHandler() {
-    blocSubs = context.read<HostCubit>().stream.listen((state) {
+    final HostCubit cubit = context.read<HostCubit>();
+    blocSubs = cubit.stream.listen((state) {
       if (state is HostOpenUrl) {
         //open WebViewPage
         Navigator.of(context).pushNamed('/web', arguments: state.url);
@@ -71,9 +70,13 @@ class _MainPageState extends State<MainPage> {
         log('initCubitHandler state.type=${state.type}');
         _onItemTapped(1, (state.type == NewsType.Type1) ? 1 : 2);
       } else if (state is HostOpenNewsDetail) {
-        //open Tab
+        //open DetailPage
         log('initCubitHandler state.title=${state.item.title}');
         Navigator.of(context).pushNamed('/news_detail', arguments: state.item);
+      } else if (state is ClientGetTheme) {
+        log('initCubitHandler state is ClientGetTheme');
+        // var isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+        cubit.emit(ClientChangeTheme(mode: ThemeMode.dark));
       }
     });
   }
@@ -96,8 +99,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _getSelectedWidget(_selectedIndex,
-            _selectedSubIndex), //_widgetOptions.elementAt(_selectedIndex),
+        child: _getSelectedWidget(_selectedIndex, _selectedSubIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -115,10 +117,8 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        //TODO: these 2 should set in costume ThemeData
         unselectedItemColor: const Color(0xFF97A8B9),
         selectedItemColor: const Color(0xFF2B64A3),
-
         onTap: _onItemTapped,
       ),
     );

@@ -27,6 +27,7 @@ dependencies:
     path: ../flutter_module/
   flutter_bloc: ^7.0.0
   webview_flutter: ^2.0.4
+  group_button: ^2.1.2
 
 dev_dependencies:
   flutter_test:

@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
         '/web': (context) => WebViewPage(),
         '/news_detail': (context) => NewsDetailPage(),
       },
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
     );
   }
 }

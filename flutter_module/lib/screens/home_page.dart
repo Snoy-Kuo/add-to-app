@@ -39,32 +39,40 @@ class MyHomePage extends StatelessWidget {
       },
       child: BlocBuilder<HomePageBloc, HomePageState>(
         builder: (context, state) {
-          //TODO: build by state
-          return ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              BannerView(
-                repository: MockBannerRepo(),
-                onItemClick: (item) => onBannerItemClick(item, _channelHandler),
-              ),
-              NewsTickerView(
-                repository: MockNewsRepo(),
-                onItemClick: (item) =>
-                    onNewsTickerItemClick(item, _channelHandler),
-                onMoreClick: (item) =>
-                    onNewsTickerMoreClick(item, _channelHandler),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Text(
-                    title ?? 'This is Home Widget\n from module',
-                    style: optionStyle,
+          //build by state
+          final ThemeData themeData = _getThemeDataByMode(context);
+          return Theme(
+            data: themeData,
+            child: Container(
+              color: themeData.scaffoldBackgroundColor,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  BannerView(
+                    repository: MockBannerRepo(),
+                    onItemClick: (item) =>
+                        onBannerItemClick(item, _channelHandler),
                   ),
-                ),
+                  NewsTickerView(
+                    repository: MockNewsRepo(),
+                    onItemClick: (item) =>
+                        onNewsTickerItemClick(item, _channelHandler),
+                    onMoreClick: (item) =>
+                        onNewsTickerMoreClick(item, _channelHandler),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.width,
+                    child: Center(
+                      child: Text(
+                        title ?? 'This is Home Widget\n from module',
+                        style: themeData.textTheme.headline5,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       ),
@@ -97,5 +105,29 @@ class MyHomePage extends StatelessWidget {
     channelHandler?.invokeMethod(
         MethodChannelHandler.HOST_OPEN_NEWS_TYPE, item);
     channelHandler?.bloc.hostCubit?.emit(HostOpenNewsType(type: type));
+  }
+
+  ThemeData _getThemeDataByMode(BuildContext context) {
+    final ThemeMode mode = BlocProvider.of<HomePageBloc>(context).themeMode;
+    log('_getThemeDataByMode, mode=$mode');
+    final ThemeData themeData;
+    if (mode == ThemeMode.dark) {
+      themeData = ThemeData.dark();
+      log('_getThemeDataByMode, themeData=dark1');
+    } else if (mode == ThemeMode.light) {
+      themeData = ThemeData.light();
+      log('_getThemeDataByMode, themeData=light1');
+    } else {
+      final Brightness platformBrightness =
+          MediaQuery.platformBrightnessOf(context);
+      if (platformBrightness == Brightness.dark) {
+        themeData = ThemeData.dark();
+        log('_getThemeDataByMode, themeData=dark2');
+      } else {
+        themeData = ThemeData.light();
+        log('_getThemeDataByMode, themeData=light2');
+      }
+    }
+    return themeData;
   }
 }

@@ -22,8 +22,6 @@ class NewsTickerView extends StatelessWidget {
       create: (context) => _bloc..add(RefreshNewsTicker()),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        // height: MediaQuery.of(context).size.width * 45 / 375,
-        color: Colors.white,
         child: Column(
           children: [
             Center(

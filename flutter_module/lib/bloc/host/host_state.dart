@@ -38,3 +38,19 @@ class HostOpenNewsType extends HostState {
   @override
   List<Object?> get props => [type, _time];
 }
+
+class ClientGetTheme extends HostState {
+  final int _time = DateTime.now().millisecondsSinceEpoch;
+
+  @override
+  List<Object?> get props => [_time];
+}
+
+class ClientChangeTheme extends HostState {
+  final ThemeMode mode;
+
+  ClientChangeTheme({required this.mode});
+
+  @override
+  List<Object?> get props => [mode];
+}
