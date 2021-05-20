@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/news_detail_page.dart';
 import 'package:flutter_app/screens/web_view_page.dart';
 
 import 'screens/main_page.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MainPage(),
         '/web': (context) => WebViewPage(),
+        '/news_detail': (context) => NewsDetailPage(),
       },
     );
   }

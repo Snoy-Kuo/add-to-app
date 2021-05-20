@@ -33,8 +33,7 @@ class MyHomePage extends StatelessWidget {
         } catch (e) {
           hostCubit = null;
         }
-        final bloc =
-            HomePageBloc(hostCubit); //context.read<HomePageHostBloc>());
+        final bloc = HomePageBloc(hostCubit);
         _channelHandler = MethodChannelHandler(bloc);
         return bloc;
       },
@@ -50,12 +49,10 @@ class MyHomePage extends StatelessWidget {
               ),
               NewsTickerView(
                 repository: MockNewsRepo(),
-                onItemClick: (item) => {
-                  log('[NewsTickerView][onItemClick]item=${item?.title ?? null}')
-                },
-                onMoreClick: (item) => {
-                  log('[NewsTickerView][onMoreClick]item=${item?.title ?? null}')
-                },
+                onItemClick: (item) =>
+                    onNewsTickerItemClick(item, _channelHandler),
+                onMoreClick: (item) =>
+                    onNewsTickerMoreClick(item, _channelHandler),
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -80,5 +77,25 @@ class MyHomePage extends StatelessWidget {
     log('onBannerItemClick item=${item?.id ?? null}, url=$url');
     channelHandler?.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
     channelHandler?.bloc.hostCubit?.emit(HostOpenUrl(url: url));
+  }
+
+  void onNewsTickerItemClick(
+      NewsItem? item, MethodChannelHandler? channelHandler) {
+    if (item == null) return;
+    String title = item.title;
+    log('onNewsTickerItemClick item=${item.id}, title=$title');
+    channelHandler?.invokeMethod(
+        MethodChannelHandler.HOST_OPEN_NEWS_DETAIL, item);
+    channelHandler?.bloc.hostCubit?.emit(HostOpenNewsDetail(item: item));
+  }
+
+  void onNewsTickerMoreClick(
+      NewsItem? item, MethodChannelHandler? channelHandler) {
+    if (item == null) return;
+    NewsType type = item.type;
+    log('onNewsTickerMoreClick item=${item.id}, type=$type');
+    channelHandler?.invokeMethod(
+        MethodChannelHandler.HOST_OPEN_NEWS_TYPE, item);
+    channelHandler?.bloc.hostCubit?.emit(HostOpenNewsType(type: type));
   }
 }

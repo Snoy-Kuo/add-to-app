@@ -18,3 +18,23 @@ class HostOpenUrl extends HostState {
   @override
   List<Object?> get props => [url, _time];
 }
+
+class HostOpenNewsDetail extends HostState {
+  final int _time = DateTime.now().millisecondsSinceEpoch;
+  final NewsItem item;
+
+  HostOpenNewsDetail({required this.item});
+
+  @override
+  List<Object?> get props => [item, _time];
+}
+
+class HostOpenNewsType extends HostState {
+  final int _time = DateTime.now().millisecondsSinceEpoch;
+  final NewsType type;
+
+  HostOpenNewsType({required this.type});
+
+  @override
+  List<Object?> get props => [type, _time];
+}

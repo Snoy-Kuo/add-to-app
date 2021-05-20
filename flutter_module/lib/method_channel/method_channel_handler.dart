@@ -8,6 +8,8 @@ class MethodChannelHandler {
   static const String CHANNEL_NAME = 'flutter_home_page';
   //Methods
   static const String HOST_OPEN_URL = 'HOST_OPEN_URL';
+  static const String HOST_OPEN_NEWS_DETAIL = 'HOST_OPEN_NEWS_DETAIL';
+  static const String HOST_OPEN_NEWS_TYPE = 'HOST_OPEN_NEWS_TYPE';
 
   final HomePageBloc bloc;
   late MethodChannel _channel;
