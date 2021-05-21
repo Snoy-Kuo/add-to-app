@@ -1,15 +1,14 @@
-
-part of 'host_cubit.dart';
+part of 'channel_cubit.dart';
 
 @immutable
-abstract class HostState  extends Equatable{}
+abstract class ChannelState extends Equatable {}
 
-class HostInitial extends HostState {
+class ChannelInitial extends ChannelState {
   @override
   List<Object?> get props => [];
 }
 
-class HostOpenUrl extends HostState {
+class HostOpenUrl extends ChannelState {
   final int _time = DateTime.now().millisecondsSinceEpoch;
   final String url;
 
@@ -19,7 +18,7 @@ class HostOpenUrl extends HostState {
   List<Object?> get props => [url, _time];
 }
 
-class HostOpenNewsDetail extends HostState {
+class HostOpenNewsDetail extends ChannelState {
   final int _time = DateTime.now().millisecondsSinceEpoch;
   final NewsItem item;
 
@@ -29,7 +28,7 @@ class HostOpenNewsDetail extends HostState {
   List<Object?> get props => [item, _time];
 }
 
-class HostOpenNewsType extends HostState {
+class HostOpenNewsType extends ChannelState {
   final int _time = DateTime.now().millisecondsSinceEpoch;
   final NewsType type;
 
@@ -39,14 +38,14 @@ class HostOpenNewsType extends HostState {
   List<Object?> get props => [type, _time];
 }
 
-class ClientGetTheme extends HostState {
+class ClientGetTheme extends ChannelState {
   final int _time = DateTime.now().millisecondsSinceEpoch;
 
   @override
   List<Object?> get props => [_time];
 }
 
-class ClientChangeTheme extends HostState {
+class ClientChangeTheme extends ChannelState {
   final ThemeMode mode;
 
   ClientChangeTheme({required this.mode});

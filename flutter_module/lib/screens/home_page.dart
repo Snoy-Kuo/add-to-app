@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/bloc/bloc.dart';
 import 'package:flutter_module/method_channel/method_channel_handler.dart';
+import 'package:flutter_module/theme/app_theme.dart';
 import 'package:flutter_module/widgets/banner/banner.dart';
 import 'package:flutter_module/widgets/news_ticker/news_ticker.dart';
 
@@ -13,8 +14,9 @@ class MyHomePage extends StatelessWidget {
       TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 
   final String? title;
+  final MethodChannelHandler _channelHandler = MethodChannelHandler();
 
-  const MyHomePage([this.title]);
+  MyHomePage([this.title]);
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +25,24 @@ class MyHomePage extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
 
-    MethodChannelHandler? _channelHandler;
-
     return BlocProvider<HomePageBloc>(
       create: (_) {
-        HostCubit? hostCubit;
+        ChannelCubit? channelCubit;
         try {
-          hostCubit = BlocProvider.of<HostCubit>(context);
+          channelCubit = BlocProvider.of<ChannelCubit>(context);
         } catch (e) {
-          hostCubit = null;
+          channelCubit = null;
         }
-        final bloc = HomePageBloc(hostCubit);
-        _channelHandler = MethodChannelHandler(bloc);
+        final bloc = HomePageBloc(channelCubit);
+        _channelHandler.bloc = bloc;
+
         return bloc;
       },
       child: BlocBuilder<HomePageBloc, HomePageState>(
         builder: (context, state) {
+          if (_channelHandler.bloc == null) {
+            _channelHandler.bloc = BlocProvider.of<HomePageBloc>(context);
+          }
           //build by state
           final ThemeData themeData = _getThemeDataByMode(context);
           return Theme(
@@ -50,15 +54,12 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   BannerView(
                     repository: MockBannerRepo(),
-                    onItemClick: (item) =>
-                        onBannerItemClick(item, _channelHandler),
+                    onItemClick: (item) => onBannerItemClick(item),
                   ),
                   NewsTickerView(
                     repository: MockNewsRepo(),
-                    onItemClick: (item) =>
-                        onNewsTickerItemClick(item, _channelHandler),
-                    onMoreClick: (item) =>
-                        onNewsTickerMoreClick(item, _channelHandler),
+                    onItemClick: (item) => onNewsTickerItemClick(item),
+                    onMoreClick: (item) => onNewsTickerMoreClick(item),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -79,53 +80,44 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  void onBannerItemClick(
-      BannerItem? item, MethodChannelHandler? channelHandler) {
+  void onBannerItemClick(BannerItem? item) {
     String url = item?.targetUrl ?? '';
-    log('onBannerItemClick item=${item?.id ?? null}, url=$url');
-    channelHandler?.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
-    channelHandler?.bloc.hostCubit?.emit(HostOpenUrl(url: url));
+    log('onBannerItemClick, url=$url');
+    _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
+    _channelHandler.bloc?.channelCubit?.emit(HostOpenUrl(url: url));
   }
 
-  void onNewsTickerItemClick(
-      NewsItem? item, MethodChannelHandler? channelHandler) {
+  void onNewsTickerItemClick(NewsItem? item) {
+    log('onNewsTickerItemClick, item=$item');
     if (item == null) return;
-    String title = item.title;
-    log('onNewsTickerItemClick item=${item.id}, title=$title');
-    channelHandler?.invokeMethod(
+    _channelHandler.invokeMethod(
         MethodChannelHandler.HOST_OPEN_NEWS_DETAIL, item);
-    channelHandler?.bloc.hostCubit?.emit(HostOpenNewsDetail(item: item));
+    _channelHandler.bloc?.channelCubit?.emit(HostOpenNewsDetail(item: item));
   }
 
-  void onNewsTickerMoreClick(
-      NewsItem? item, MethodChannelHandler? channelHandler) {
+  void onNewsTickerMoreClick(NewsItem? item) {
+    log('onNewsTickerMoreClick, item=$item');
     if (item == null) return;
     NewsType type = item.type;
-    log('onNewsTickerMoreClick item=${item.id}, type=$type');
-    channelHandler?.invokeMethod(
+    _channelHandler.invokeMethod(
         MethodChannelHandler.HOST_OPEN_NEWS_TYPE, item);
-    channelHandler?.bloc.hostCubit?.emit(HostOpenNewsType(type: type));
+    _channelHandler.bloc?.channelCubit?.emit(HostOpenNewsType(type: type));
   }
 
   ThemeData _getThemeDataByMode(BuildContext context) {
     final ThemeMode mode = BlocProvider.of<HomePageBloc>(context).themeMode;
-    log('_getThemeDataByMode, mode=$mode');
     final ThemeData themeData;
     if (mode == ThemeMode.dark) {
-      themeData = ThemeData.dark();
-      log('_getThemeDataByMode, themeData=dark1');
+      themeData = appDarkThemeDate();
     } else if (mode == ThemeMode.light) {
-      themeData = ThemeData.light();
-      log('_getThemeDataByMode, themeData=light1');
+      themeData = appLightThemeDate();
     } else {
       final Brightness platformBrightness =
           MediaQuery.platformBrightnessOf(context);
       if (platformBrightness == Brightness.dark) {
-        themeData = ThemeData.dark();
-        log('_getThemeDataByMode, themeData=dark2');
+        themeData = appDarkThemeDate();
       } else {
-        themeData = ThemeData.light();
-        log('_getThemeDataByMode, themeData=light2');
+        themeData = appLightThemeDate();
       }
     }
     return themeData;

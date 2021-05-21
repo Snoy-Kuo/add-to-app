@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bloc/app_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_module/flutter_module.dart';
 import 'package:group_button/group_button.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -8,6 +11,10 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appBloc = BlocProvider.of<AppBloc>(context);
+    final channelCubit = BlocProvider.of<ChannelCubit>(context);
+    final String selectionButton = _getSelection(appBloc.themeMode);
+
     return SafeArea(
       top: true,
       child: ListView(
@@ -19,11 +26,16 @@ class SettingsPage extends StatelessWidget {
                 Text('ThemeMode:'),
                 GroupButton(
                   isRadio: true,
+                  selectedButtons: [selectionButton],
                   selectedColor: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   spacing: 10,
-                  onSelected: (index, isSelected) =>
-                      print('$index button is selected'),
+                  onSelected: (index, isSelected) {
+                    print('$index button is selected');
+                    ThemeMode mode = _getThemeMode(index);
+                    appBloc.add(AppChangeTheme(mode: mode));
+                    channelCubit.emit(ClientChangeTheme(mode: mode));
+                  },
                   buttons: ["Light", "Dark", "System"],
                 ),
               ],
@@ -42,5 +54,27 @@ class SettingsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  ThemeMode _getThemeMode(int selection) {
+    switch (selection) {
+      case 0:
+        return ThemeMode.light;
+      case 1:
+        return ThemeMode.dark;
+      default:
+        return ThemeMode.system;
+    }
+  }
+
+  String _getSelection(ThemeMode mode) {
+    switch (mode) {
+      case ThemeMode.light:
+        return "Light";
+      case ThemeMode.dark:
+        return "Dark";
+      default:
+        return "System";
+    }
   }
 }

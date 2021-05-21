@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_module/widgets/news_ticker/model/model.dart';
+import 'package:flutter_module/flutter_module.dart';
 
 class NewsDetailPage extends StatelessWidget {
   @override

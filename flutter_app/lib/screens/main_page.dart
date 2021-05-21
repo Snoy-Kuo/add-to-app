@@ -2,11 +2,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bloc/app_bloc.dart';
 import 'package:flutter_app/screens/settings_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_module/bloc/host/host_cubit.dart';
-import 'package:flutter_module/screens/home_page.dart';
-import 'package:flutter_module/widgets/news_ticker/model/model.dart';
+import 'package:flutter_module/flutter_module.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class MainPage extends StatefulWidget {
@@ -24,31 +23,56 @@ class _MainPageState extends State<MainPage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 
-  static Widget _getSelectedWidget(int index, int subIndex) {
-    switch (index) {
-      case 0:
-        return MyHomePage();
-      case 1:
-        {
-          String type = 'All News';
-          if (subIndex == 1) {
-            type = 'Good News';
-          } else if (subIndex == 2) {
-            type = 'Bad News';
-          }
-          return Text(
-            'This is Info Widget, \nType=$type',
-            style: optionStyle,
-          );
-        }
-      case 2:
-        return SettingsPage();
-      default:
-        return Text(
-          'This is Undefined Widget',
-          style: optionStyle,
-        );
+  Widget _getSelectedWidget(int index, int subIndex) {
+    Text text = Text(
+      'This is Info Widget',
+      style: optionStyle,
+    );
+    if (index == 1) {
+      String type = 'All News';
+      if (subIndex == 1) {
+        type = 'Good News';
+      } else if (subIndex == 2) {
+        type = 'Bad News';
+      }
+      text = Text(
+        'This is Info Widget, \nType=$type',
+        style: optionStyle,
+      );
     }
+
+    return IndexedStack(
+      index: index,
+      children: [
+        MyHomePage(),
+        Center(child:text),
+        SettingsPage(),
+      ],
+    );
+    // switch (index) {
+    //   case 0:
+    //     return MyHomePage();
+    //   case 1:
+    //     {
+    //       String type = 'All News';
+    //       if (subIndex == 1) {
+    //         type = 'Good News';
+    //       } else if (subIndex == 2) {
+    //         type = 'Bad News';
+    //       }
+    //       return Text(
+    //         'This is Info Widget, \nType=$type',
+    //         style: optionStyle,
+    //       );
+    //     }
+    //   case 2:
+    //     return SettingsPage();
+    //   default:
+    //     return Text(
+    //       'This is Undefined Widget',
+    //       style: optionStyle,
+    //     );
+    // }
   }
 
   late StreamSubscription blocSubs;
@@ -60,7 +84,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   void initCubitHandler() {
-    final HostCubit cubit = context.read<HostCubit>();
+    final ChannelCubit cubit = context.read<ChannelCubit>();
     blocSubs = cubit.stream.listen((state) {
       if (state is HostOpenUrl) {
         //open WebViewPage
@@ -75,8 +99,11 @@ class _MainPageState extends State<MainPage> {
         Navigator.of(context).pushNamed('/news_detail', arguments: state.item);
       } else if (state is ClientGetTheme) {
         log('initCubitHandler state is ClientGetTheme');
-        // var isDarkTheme = Theme.of(context).brightness == Brightness.dark;
-        cubit.emit(ClientChangeTheme(mode: ThemeMode.dark));
+        cubit.emit(
+          ClientChangeTheme(
+            mode: BlocProvider.of<AppBloc>(context).themeMode,
+          ),
+        );
       }
     });
   }
@@ -89,7 +116,6 @@ class _MainPageState extends State<MainPage> {
 
   void _onItemTapped(int index, [int? subIndex]) {
     setState(() {
-      log('_onItemTapped index=$index, subIndex=$subIndex');
       _selectedIndex = index;
       _selectedSubIndex = subIndex ?? 0;
     });
