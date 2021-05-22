@@ -45,34 +45,10 @@ class _MainPageState extends State<MainPage> {
       index: index,
       children: [
         MyHomePage(),
-        Center(child:text),
+        Center(child: text),
         SettingsPage(),
       ],
     );
-    // switch (index) {
-    //   case 0:
-    //     return MyHomePage();
-    //   case 1:
-    //     {
-    //       String type = 'All News';
-    //       if (subIndex == 1) {
-    //         type = 'Good News';
-    //       } else if (subIndex == 2) {
-    //         type = 'Bad News';
-    //       }
-    //       return Text(
-    //         'This is Info Widget, \nType=$type',
-    //         style: optionStyle,
-    //       );
-    //     }
-    //   case 2:
-    //     return SettingsPage();
-    //   default:
-    //     return Text(
-    //       'This is Undefined Widget',
-    //       style: optionStyle,
-    //     );
-    // }
   }
 
   late StreamSubscription blocSubs;

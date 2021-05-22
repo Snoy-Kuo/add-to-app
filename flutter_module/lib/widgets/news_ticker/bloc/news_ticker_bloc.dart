@@ -20,7 +20,7 @@ class NewsTickerBloc extends Bloc<NewsTickerEvent, NewsTickerState> {
   Stream<NewsTickerState> mapEventToState(
     NewsTickerEvent event,
   ) async* {
-    if (event is RefreshNewsTicker){
+    if (event is RefreshNewsTicker) {
       yield* _mapRefreshNewsTickerToState();
     }
   }

@@ -55,8 +55,10 @@ class NewsTickerView extends StatelessWidget {
                                   SizedBox(width: 5),
                                   Expanded(
                                     child: Text(
-                                        '[${(item.type == NewsType.Type1) ? 'Good News' : 'Bad News'}] ${item.title}',
-                                      style: Theme.of(context).textTheme.subtitle2,),
+                                      '[${(item.type == NewsType.Type1) ? 'Good News' : 'Bad News'}] ${item.title}',
+                                      style:
+                                          Theme.of(context).textTheme.subtitle2,
+                                    ),
                                   ),
                                   SizedBox(width: 5),
                                   InkWell(
@@ -64,7 +66,11 @@ class NewsTickerView extends StatelessWidget {
                                       if (onMoreClick != null)
                                         onMoreClick!(item);
                                     },
-                                    child: Text('more >', style: Theme.of(context).textTheme.bodyText2,),
+                                    child: Text(
+                                      'more >',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    ),
                                   ),
                                   SizedBox(width: 12),
                                 ],

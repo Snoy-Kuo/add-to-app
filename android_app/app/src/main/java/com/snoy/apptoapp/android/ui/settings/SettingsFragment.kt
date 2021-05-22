@@ -1,6 +1,5 @@
 package com.snoy.apptoapp.android.ui.settings
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,11 +36,7 @@ class SettingsFragment : Fragment() {
         })
         textView.setOnClickListener {
 //            startActivity(FlutterActivity.createDefaultIntent(requireActivity()))
-//            WebViewActivity.openActivity(context = requireContext(), url = "https://www.google.com")
-            val intent = Intent(context, WebViewActivity::class.java).apply {
-                putExtra("url", "https://www.google.com")
-            }
-            context?.startActivity(intent)
+            WebViewActivity.openActivity(context = requireContext(), url = "https://www.google.com")
         }
         return root
     }

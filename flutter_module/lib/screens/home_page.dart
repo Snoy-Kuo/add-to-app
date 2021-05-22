@@ -90,8 +90,8 @@ class MyHomePage extends StatelessWidget {
   void onNewsTickerItemClick(NewsItem? item) {
     log('onNewsTickerItemClick, item=$item');
     if (item == null) return;
-    _channelHandler.invokeMethod(
-        MethodChannelHandler.HOST_OPEN_NEWS_DETAIL, item);
+    _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_NEWS_DETAIL,
+        <String, dynamic>{'id': item.id, 'title': item.title});
     _channelHandler.bloc?.channelCubit?.emit(HostOpenNewsDetail(item: item));
   }
 
@@ -100,7 +100,7 @@ class MyHomePage extends StatelessWidget {
     if (item == null) return;
     NewsType type = item.type;
     _channelHandler.invokeMethod(
-        MethodChannelHandler.HOST_OPEN_NEWS_TYPE, item);
+        MethodChannelHandler.HOST_OPEN_NEWS_TYPE, type.index);
     _channelHandler.bloc?.channelCubit?.emit(HostOpenNewsType(type: type));
   }
 

@@ -1,5 +1,3 @@
-
-
 import 'news_item.dart';
 import 'news_repo.dart';
 
@@ -18,17 +16,17 @@ class MockNewsRepo implements NewsRepo {
     return [
       NewsItem(
         id: 0,
-        title:'Broken News 1',
+        title: 'Broken News 1',
         type: NewsType.Type1,
       ),
       NewsItem(
         id: 1,
-        title:'Breaking News 2',
+        title: 'Breaking News 2',
         type: NewsType.Type2,
       ),
       NewsItem(
         id: 2,
-        title:'Will break News 3',
+        title: 'Will break News 3',
         type: NewsType.Type1,
       ),
     ];
