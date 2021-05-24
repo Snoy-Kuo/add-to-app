@@ -1,6 +1,7 @@
 package com.snoy.apptoapp.android.util
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.view.View
@@ -31,4 +32,15 @@ fun Activity.hideSystemUI() {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                 )
     }
+}
+
+fun View.setStatusViewHeight() {
+    val params = this.layoutParams
+    params.height = context.getStatusBarHeight()
+    this.layoutParams = params
+}
+
+private fun Context.getStatusBarHeight(): Int {
+    val resourceId = this.resources.getIdentifier("status_bar_height", "dimen", "android")
+    return this.resources.getDimensionPixelSize(resourceId)
 }

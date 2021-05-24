@@ -78,4 +78,13 @@ class HomeFragment : FlutterFragment() {
 
         }
     }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            this.onResume()
+        } else {
+            this.onPause()
+        }
+    }
 }
