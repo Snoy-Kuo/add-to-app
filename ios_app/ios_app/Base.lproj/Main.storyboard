@@ -55,12 +55,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme Mode:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uU0-q3-Ps7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="E1N-dQ-aTf">
+                                <rect key="frame" x="117" y="73" width="191" height="32"/>
+                                <segments>
+                                    <segment title="Light"/>
+                                    <segment title="Dark"/>
+                                    <segment title="System"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0tG-x9-e9N"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xOj-Tf-oMu" firstAttribute="centerX" secondItem="0tG-x9-e9N" secondAttribute="centerX" id="9Hg-X9-i9c"/>
+                            <constraint firstItem="E1N-dQ-aTf" firstAttribute="centerX" secondItem="0tG-x9-e9N" secondAttribute="centerX" id="B1r-nM-twf"/>
+                            <constraint firstItem="uU0-q3-Ps7" firstAttribute="top" secondItem="0tG-x9-e9N" secondAttribute="top" id="FOb-eT-NKt"/>
+                            <constraint firstItem="E1N-dQ-aTf" firstAttribute="top" secondItem="uU0-q3-Ps7" secondAttribute="bottom" constant="10" id="e7U-jw-Osi"/>
+                            <constraint firstItem="0tG-x9-e9N" firstAttribute="trailing" secondItem="uU0-q3-Ps7" secondAttribute="trailing" id="olq-ik-ApU"/>
                             <constraint firstItem="xOj-Tf-oMu" firstAttribute="centerY" secondItem="0tG-x9-e9N" secondAttribute="centerY" id="p0O-H3-JOQ"/>
+                            <constraint firstItem="uU0-q3-Ps7" firstAttribute="leading" secondItem="0tG-x9-e9N" secondAttribute="leading" id="xvq-rJ-8Nb"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="W9j-fO-x8j">
@@ -68,12 +87,13 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="lbCenter" destination="xOj-Tf-oMu" id="RTi-6G-vgw"/>
+                        <outlet property="sgAppreance" destination="E1N-dQ-aTf" id="Pgh-il-C84"/>
                         <segue destination="xR4-Sa-btw" kind="presentation" identifier="SettingsToWebView" modalPresentationStyle="fullScreen" id="Rrj-qa-IVX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0Y-vI-h7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352" y="938"/>
+            <point key="canvasLocation" x="-352.17391304347831" y="937.5"/>
         </scene>
         <!--WebView Title-->
         <scene sceneID="ABH-7y-myb">
@@ -220,7 +240,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="COL-ud-yyb"/>
+        <segue reference="Rrj-qa-IVX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>

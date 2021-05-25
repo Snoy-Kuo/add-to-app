@@ -11,6 +11,7 @@ import Flutter
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var lbCenter: UILabel!
+    @IBOutlet weak var sgAppreance: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ class SettingsViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(SettingsViewController.pushWebView))
         lbCenter.isUserInteractionEnabled = true
         lbCenter.addGestureRecognizer(tap)
+        sgAppreance.addTarget(self, action: #selector(onAppearanceSelected(sender:)), for:.valueChanged)
     }
     
     @objc func showFlutter(){
@@ -34,6 +36,27 @@ class SettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as? WebViewController
         destVC?.initUrl = sender as! String
+    }
+    
+    @objc func onAppearanceSelected(sender: UISegmentedControl) {
+        if #available(iOS 13.0, *) {
+            let index = sender.selectedSegmentIndex
+            
+            switch(index){
+            case 0:do { //Light
+                view.window?.overrideUserInterfaceStyle = .light
+                break
+            }
+            case 1:do { //dark
+                view.window?.overrideUserInterfaceStyle = .dark
+                break
+            }
+            default:do { //system
+                view.window?.overrideUserInterfaceStyle = .unspecified
+                break
+            }
+            }
+        }
     }
 }
 
