@@ -9,6 +9,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Info-->
+        <scene sceneID="KYt-gv-F6F">
+            <objects>
+                <viewController id="p4b-6j-p46" customClass="InfoViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Ld-e6-1QF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Info VC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-sE-goF">
+                                <rect key="frame" x="153" y="418.5" width="108.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xTT-Br-Rhe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Mr-sE-goF" firstAttribute="centerX" secondItem="xTT-Br-Rhe" secondAttribute="centerX" id="oNw-EF-WRx"/>
+                            <constraint firstItem="3Mr-sE-goF" firstAttribute="centerY" secondItem="xTT-Br-Rhe" secondAttribute="centerY" id="pa6-RY-yaR"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Info" image="info.circle" catalog="system" id="OVz-RT-SZg"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="lbCenter" destination="3Mr-sE-goF" id="1QV-dh-oAd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sKo-yq-mIr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-352" y="177"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="nSO-be-H19">
             <objects>
@@ -17,8 +49,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is Settings VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOj-Tf-oMu">
-                                <rect key="frame" x="136" y="438" width="143" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Settings VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOj-Tf-oMu">
+                                <rect key="frame" x="135.5" y="418" width="143" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0Y-vI-h7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352" y="85"/>
+            <point key="canvasLocation" x="-352" y="938"/>
         </scene>
         <!--WebView Title-->
         <scene sceneID="ABH-7y-myb">
@@ -117,16 +149,17 @@
                     </tabBarItem>
                     <connections>
                         <segue destination="xR4-Sa-btw" kind="presentation" identifier="HomeToWebView" modalPresentationStyle="fullScreen" id="COL-ud-yyb"/>
+                        <segue destination="17n-HH-rJG" kind="presentation" identifier="HomeToNewsDetail" modalPresentationStyle="fullScreen" id="55a-Np-Ju2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Re-4h-CMK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352" y="-521"/>
+            <point key="canvasLocation" x="-352" y="-536"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="xWJ-ul-ukI">
             <objects>
-                <tabBarController id="sCj-ud-fhK" sceneMemberID="viewController">
+                <tabBarController id="sCj-ud-fhK" customClass="MainTabBarController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mbq-FI-Ojd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -134,12 +167,56 @@
                     </tabBar>
                     <connections>
                         <segue destination="JFs-Dj-ckK" kind="relationship" relationship="viewControllers" id="MJb-wR-FJ4"/>
-                        <segue destination="BBE-O1-P7R" kind="relationship" relationship="viewControllers" id="icV-3j-bAt"/>
+                        <segue destination="p4b-6j-p46" kind="relationship" relationship="viewControllers" id="m7r-kG-sQ7"/>
+                        <segue destination="BBE-O1-P7R" kind="relationship" relationship="viewControllers" id="rnQ-C5-v0U"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCd-hS-bjm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1241" y="-218"/>
+            <point key="canvasLocation" x="-1588" y="177"/>
+        </scene>
+        <!--News Detail View Controller-->
+        <scene sceneID="SFn-Tm-uos">
+            <objects>
+                <viewController id="17n-HH-rJG" customClass="NewsDetailViewController" customModule="ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="16d-Jb-KNo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is NewsDetail VC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FA-sJ-zd6">
+                                <rect key="frame" x="124" y="443" width="166" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9D-pm-aab">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="News Detail Title" leftItemsSupplementBackButton="YES" id="jGx-BC-W0R">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="yzw-be-GiU"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jR3-Xm-ByY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jR3-Xm-ByY" firstAttribute="trailing" secondItem="b9D-pm-aab" secondAttribute="trailing" id="5Yb-oO-cp8"/>
+                            <constraint firstItem="b9D-pm-aab" firstAttribute="leading" secondItem="jR3-Xm-ByY" secondAttribute="leading" id="Dqx-QN-2uy"/>
+                            <constraint firstItem="0FA-sJ-zd6" firstAttribute="centerX" secondItem="jR3-Xm-ByY" secondAttribute="centerX" id="TAw-Z7-ojV"/>
+                            <constraint firstItem="0FA-sJ-zd6" firstAttribute="centerY" secondItem="jR3-Xm-ByY" secondAttribute="centerY" id="cLe-re-Agc"/>
+                            <constraint firstItem="jR3-Xm-ByY" firstAttribute="top" secondItem="b9D-pm-aab" secondAttribute="top" id="zwO-gT-92k"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exitItem" destination="yzw-be-GiU" id="cLv-v0-sLa"/>
+                        <outlet property="lbCenter" destination="0FA-sJ-zd6" id="lSZ-Ji-Ccg"/>
+                        <outlet property="navTitle" destination="jGx-BC-W0R" id="CSe-2Z-esL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Deo-ZU-vma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="536" y="-848"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -148,6 +225,7 @@
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

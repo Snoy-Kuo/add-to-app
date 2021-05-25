@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		57AD7A4FA0A56EAFBDC105C4 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8D33A02EF6E39CC1634538 /* Pods_ios_app.framework */; };
 		8C17E9482653587700E5DFE3 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17E9472653587700E5DFE3 /* WebViewController.swift */; };
+		8C366F33265B9C8500760420 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F32265B9C8500760420 /* InfoViewController.swift */; };
+		8C366F36265BB50000760420 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F35265BB50000760420 /* MainTabBarController.swift */; };
+		8C366F38265CC7CE00760420 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */; };
 		8CDF7BC8264B7BBF000A9835 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDF7BC7264B7BBF000A9835 /* AppDelegate.swift */; };
 		8CDF7BCA264B7BBF000A9835 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDF7BC9264B7BBF000A9835 /* SceneDelegate.swift */; };
 		8CDF7BCC264B7BBF000A9835 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDF7BCB264B7BBF000A9835 /* SettingsViewController.swift */; };
@@ -21,6 +24,9 @@
 /* Begin PBXFileReference section */
 		37383F58C1D381C8016A8ED4 /* Pods-ios_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_app.debug.xcconfig"; path = "Target Support Files/Pods-ios_app/Pods-ios_app.debug.xcconfig"; sourceTree = "<group>"; };
 		8C17E9472653587700E5DFE3 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		8C366F32265B9C8500760420 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		8C366F35265BB50000760420 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		8CDF7BC4264B7BBF000A9835 /* ios_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CDF7BC7264B7BBF000A9835 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CDF7BC9264B7BBF000A9835 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,8 +56,11 @@
 			isa = PBXGroup;
 			children = (
 				8C17E945265357C500E5DFE3 /* home */,
+				8C366F31265B9C2B00760420 /* info */,
 				8C17E946265357CF00E5DFE3 /* settings */,
+				8C366F34265BB4C200760420 /* main */,
 				8C17E9472653587700E5DFE3 /* WebViewController.swift */,
+				8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -70,6 +79,22 @@
 				8CDF7BCB264B7BBF000A9835 /* SettingsViewController.swift */,
 			);
 			path = settings;
+			sourceTree = "<group>";
+		};
+		8C366F31265B9C2B00760420 /* info */ = {
+			isa = PBXGroup;
+			children = (
+				8C366F32265B9C8500760420 /* InfoViewController.swift */,
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		8C366F34265BB4C200760420 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				8C366F35265BB50000760420 /* MainTabBarController.swift */,
+			);
+			path = main;
 			sourceTree = "<group>";
 		};
 		8CDF7BBB264B7BBF000A9835 = {
@@ -246,10 +271,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C366F38265CC7CE00760420 /* NewsDetailViewController.swift in Sources */,
 				8CDF7BCC264B7BBF000A9835 /* SettingsViewController.swift in Sources */,
 				8CDF7BC8264B7BBF000A9835 /* AppDelegate.swift in Sources */,
 				8CDF7BCA264B7BBF000A9835 /* SceneDelegate.swift in Sources */,
 				8C17E9482653587700E5DFE3 /* WebViewController.swift in Sources */,
+				8C366F33265B9C8500760420 /* InfoViewController.swift in Sources */,
+				8C366F36265BB50000760420 /* MainTabBarController.swift in Sources */,
 				8CE24F1D264D120C00D95F9E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
