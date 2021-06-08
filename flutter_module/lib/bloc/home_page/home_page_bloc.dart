@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_module/bloc/channel/channel_cubit.dart';
+import 'package:flutter_module/flutter_module.dart';
 import 'package:meta/meta.dart';
 
 part 'home_page_event.dart';
@@ -36,6 +37,9 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     if (event is ChangeTheme) {
       this.themeMode = event.mode;
       yield HomePageUpdated();
+    } else if (event is UpdateQuot) {
+      // this.themeMode = event.item;
+      yield HomePageQuoteUpdated(item: event.item);
     }
   }
 

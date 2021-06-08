@@ -11,3 +11,12 @@ class ChangeTheme extends HomePageEvent {
   @override
   List<Object?> get props => [mode];
 }
+
+class UpdateQuot extends HomePageEvent {
+  final QuotItem item;
+
+  UpdateQuot({required this.item});
+
+  @override
+  List<Object?> get props => [item];
+}

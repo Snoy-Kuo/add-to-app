@@ -53,3 +53,22 @@ class ClientChangeTheme extends ChannelState {
   @override
   List<Object?> get props => [mode];
 }
+
+class HostOpenQuotDetail extends ChannelState {
+  final int _time = DateTime.now().millisecondsSinceEpoch;
+  final QuotItem item;
+
+  HostOpenQuotDetail({required this.item});
+
+  @override
+  List<Object?> get props => [item, _time];
+}
+
+class ClientUpdateQuot extends ChannelState {
+  final QuotItem item;
+
+  ClientUpdateQuot({required this.item});
+
+  @override
+  List<Object?> get props => [item];
+}

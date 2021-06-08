@@ -87,7 +87,6 @@ class NewsTickerView extends StatelessWidget {
               ),
             ),
             Divider(
-              color: const Color(0xFFE8E8E8),
               height: 2,
               thickness: 1,
               indent: 15,
