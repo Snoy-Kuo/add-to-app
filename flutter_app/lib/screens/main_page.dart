@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bloc/app_bloc.dart';
@@ -9,8 +8,6 @@ import 'package:flutter_module/flutter_module.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
-
   @override
   State<MainPage> createState() => _MainPageState();
 }
@@ -67,19 +64,19 @@ class _MainPageState extends State<MainPage> {
         Navigator.of(context).pushNamed('/web', arguments: state.url);
       } else if (state is HostOpenNewsType) {
         //open Tab
-        log('initCubitHandler state.type=${state.type}');
         _onItemTapped(1, (state.type == NewsType.Type1) ? 1 : 2);
       } else if (state is HostOpenNewsDetail) {
-        //open DetailPage
-        log('initCubitHandler state.title=${state.item.title}');
+        //open NewsDetailPage
         Navigator.of(context).pushNamed('/news_detail', arguments: state.item);
       } else if (state is ClientGetTheme) {
-        log('initCubitHandler state is ClientGetTheme');
         cubit.emit(
           ClientChangeTheme(
             mode: BlocProvider.of<AppBloc>(context).themeMode,
           ),
         );
+      } else if (state is HostOpenQuotDetail) {
+        //open QuotDetailPage
+        Navigator.of(context).pushNamed('/quot_detail', arguments: state.item);
       }
     });
   }

@@ -16,3 +16,12 @@ class AppThemeChanged extends AppState {
   @override
   List<Object?> get props => [mode];
 }
+
+class AppRealtimeQuotSwitched extends AppState {
+  final bool isRealtime;
+
+  AppRealtimeQuotSwitched({required this.isRealtime});
+
+  @override
+  List<Object?> get props => [isRealtime];
+}

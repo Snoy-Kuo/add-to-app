@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_module/widgets/stock_ticker/model/quot_item.dart';
 import 'package:flutter_module/widgets/stock_ticker/model/quot_repo.dart';
@@ -40,11 +41,17 @@ class StockTickerBloc extends Bloc<StockTickerEvent, StockTickerState> {
 
   Stream<StockTickerState> _mapUpdateStockTickerToState(QuotItem item) async* {
     try {
-      var target = list?.firstWhere((it) => (it.id == item.id));
-      target!.price = item.price;
+      // log('[StockTickerBloc][_mapUpdateStockTickerToState]item=$item, list=$list');
+      var target = list?.firstWhereOrNull((it) => (it.id == item.id));
+      if (target == null) {
+        return;
+      } else {
+        target.price = item.price;
+        // log('[StockTickerBloc][_mapUpdateStockTickerToState]target=$target, list=$list');
+      }
       yield StockTickerLoaded(list ?? []);
     } catch (e) {
-      log('e=$e');
+      log('[StockTickerBloc][_mapUpdateStockTickerToState]e=$e');
     }
   }
 }

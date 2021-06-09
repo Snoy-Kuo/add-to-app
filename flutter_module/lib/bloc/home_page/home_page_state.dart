@@ -14,12 +14,3 @@ class HomePageUpdated extends HomePageState {
   @override
   List<Object?> get props => [];
 }
-
-class HomePageQuoteUpdated extends HomePageState {
-  final QuotItem item;
-
-  HomePageQuoteUpdated({required this.item});
-
-  @override
-  List<Object?> get props => [item];
-}

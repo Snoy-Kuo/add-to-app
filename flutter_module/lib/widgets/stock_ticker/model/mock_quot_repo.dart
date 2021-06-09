@@ -4,13 +4,14 @@ import 'quot_repo.dart';
 
 class MockQuotRepo implements QuotRepo {
   final Duration delay;
-  List<QuotItem>? fakeList;
 
-  MockQuotRepo([this.fakeList, this.delay = Duration.zero]);
+  List<QuotItem>? _fakeList;
+
+  MockQuotRepo([this._fakeList, this.delay = Duration.zero]);
 
   @override
   Future<List<QuotItem>?> fetchQuotList() {
-    return Future.delayed(delay, () => fakeList ?? _defaultFakeList());
+    return Future.delayed(delay, () => _fakeList ?? _defaultFakeList());
   }
 
   List<QuotItem> _defaultFakeList() {

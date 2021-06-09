@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/bloc/bloc.dart';
 import 'package:flutter_module/method_channel/method_channel_handler.dart';
 import 'package:flutter_module/theme/app_theme.dart';
+import 'package:flutter_module/widgets/stock_ticker/bloc/stock_ticker_bloc.dart';
 import 'package:flutter_module/widgets/widgets.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -16,14 +17,6 @@ class MyHomePage extends StatelessWidget {
   final MethodChannelHandler _channelHandler = MethodChannelHandler();
 
   MyHomePage([this.title]);
-
-  void onStockTickerItemClick(QuotItem? item) {
-    dev.log('onStockTickerItemClick item=${item?.name ?? null}');
-    if (item == null) return;
-    _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_QUOT_DETAIL,
-        <String, dynamic>{'id': item.id, 'name': item.name});
-    _channelHandler.bloc?.channelCubit?.emit(HostOpenQuotDetail(item: item));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +61,7 @@ class MyHomePage extends StatelessWidget {
                     onItemClick: (item) => onNewsTickerItemClick(item),
                     onMoreClick: (item) => onNewsTickerMoreClick(item),
                   ),
-                  _stockTickerView(state),
+                  _stockTickerView(),
                   Divider(
                     thickness: 4,
                   ),
@@ -91,29 +84,29 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget _stockTickerView(HomePageState state) {
-    final StockTickerView stockTickerView = StockTickerView(
-      repository: MockQuotRepo(),
-      onItemClick: (item) => onStockTickerItemClick(item),
+  Widget _stockTickerView() {
+    Widget w = BlocProvider<StockTickerBloc>(
+      create: (context) {
+        final StockTickerBloc bloc =
+            StockTickerBloc(repository: MockQuotRepo());
+        context.read<HomePageBloc>().stockTickerBloc = bloc;
+        return bloc..add(RefreshStockTicker());
+      },
+      child: StockTickerView(
+        onItemClick: (item) => onStockTickerItemClick(item),
+      ),
     );
 
-    dev.log('_stockTickerView, state=$state');
-
-    if (state is UpdateQuot) {
-      stockTickerView.update((state as UpdateQuot).item);
-    }
-    return stockTickerView;
+    return w;
   }
 
   void onBannerItemClick(BannerItem? item) {
     String url = item?.targetUrl ?? '';
-    dev.log('onBannerItemClick, url=$url');
     _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
     _channelHandler.bloc?.channelCubit?.emit(HostOpenUrl(url: url));
   }
 
   void onNewsTickerItemClick(NewsItem? item) {
-    dev.log('onNewsTickerItemClick, item=$item');
     if (item == null) return;
     _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_NEWS_DETAIL,
         <String, dynamic>{'id': item.id, 'title': item.title});
@@ -121,12 +114,19 @@ class MyHomePage extends StatelessWidget {
   }
 
   void onNewsTickerMoreClick(NewsItem? item) {
-    dev.log('onNewsTickerMoreClick, item=$item');
     if (item == null) return;
     NewsType type = item.type;
     _channelHandler.invokeMethod(
         MethodChannelHandler.HOST_OPEN_NEWS_TYPE, type.index);
     _channelHandler.bloc?.channelCubit?.emit(HostOpenNewsType(type: type));
+  }
+
+  void onStockTickerItemClick(QuotItem? item) {
+    dev.log('onStockTickerItemClick, item=$item');
+    if (item == null) return;
+    _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_QUOT_DETAIL,
+        <String, dynamic>{'id': item.id, 'name': item.name});
+    _channelHandler.bloc?.channelCubit?.emit(HostOpenQuotDetail(item: item));
   }
 
   ThemeData _getThemeDataByMode(BuildContext context) {
