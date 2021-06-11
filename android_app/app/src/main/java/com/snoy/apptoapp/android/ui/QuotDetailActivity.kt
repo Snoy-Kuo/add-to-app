@@ -7,12 +7,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.snoy.apptoapp.android.databinding.ActivityNewsDetailBinding
 
-class NewsDetailActivity : AppCompatActivity() {
+class QuotDetailActivity : AppCompatActivity() {
 
     companion object {
 
-        fun openActivity(context: Context, id: Int, title: String) {
-            val intent = Intent(context, NewsDetailActivity::class.java).apply {
+        fun openActivity(context: Context, id: String, title: String) {
+            val intent = Intent(context, QuotDetailActivity::class.java).apply {
                 putExtra("id", id)
                 putExtra("title", title)
             }
@@ -39,7 +39,7 @@ class NewsDetailActivity : AppCompatActivity() {
         title = binding.title
 
         val id: String = intent.getStringExtra("id") ?: ""
-        content.text = "This is NewsDetailActivity\nid=$id"
+        content.text = "This is QuotDetailActivity\nid=$id"
         val titleText: String = intent.getStringExtra("title") ?: ""
         title.text = titleText
     }

@@ -16,4 +16,11 @@ class QuotItem extends Equatable {
 
   @override
   List<Object?> get props => [id, name, price];
+
+  static QuotItem fromJson(dynamic json) {
+    return QuotItem(
+        id: json['id'] as String,
+        name: json['name'] as String,
+        price: json['price'] as double);
+  }
 }

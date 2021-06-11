@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.snoy.apptoapp.android.App
 import com.snoy.apptoapp.android.R
 import com.snoy.apptoapp.android.databinding.FragmentSettingsBinding
 import com.snoy.apptoapp.android.ui.MainActivity
@@ -64,6 +65,11 @@ class SettingsFragment : Fragment() {
         binding.radioLight.setOnClickListener { view -> onRadioButtonClicked(view) }
         binding.radioDark.setOnClickListener { view -> onRadioButtonClicked(view) }
         binding.radioSystem.setOnClickListener { view -> onRadioButtonClicked(view) }
+
+        val swRealtime = binding.switchRealtime
+        swRealtime.setOnCheckedChangeListener { _, isChecked ->
+            App.isRealtimeQuot = isChecked
+        }
 
         return root
     }

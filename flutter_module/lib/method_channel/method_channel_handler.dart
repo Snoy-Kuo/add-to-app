@@ -29,7 +29,7 @@ class MethodChannelHandler {
       log('MethodCallHandler call=${call.method}, args=${call.arguments}');
       //TODO: pass method and args from Host App to Client bloc
       if (call.method == CLIENT_UPDATE_QUOT) {
-        bloc?.add(UpdateQuot(item: call.arguments as QuotItem));
+        bloc?.add(UpdateQuot(item: QuotItem.fromJson(call.arguments)));
       }
     });
   }
