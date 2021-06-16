@@ -8,10 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		57AD7A4FA0A56EAFBDC105C4 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8D33A02EF6E39CC1634538 /* Pods_ios_app.framework */; };
+		8C02D1CB2673584300698A46 /* QuotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C02D1CA2673584300698A46 /* QuotDetailViewController.swift */; };
 		8C17E9482653587700E5DFE3 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17E9472653587700E5DFE3 /* WebViewController.swift */; };
 		8C366F33265B9C8500760420 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F32265B9C8500760420 /* InfoViewController.swift */; };
 		8C366F36265BB50000760420 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F35265BB50000760420 /* MainTabBarController.swift */; };
 		8C366F38265CC7CE00760420 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */; };
+		8C8FC4EC2678525800C9A716 /* QuotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8FC4EB2678525800C9A716 /* QuotItem.swift */; };
+		8C8FC4EE2678593A00C9A716 /* RealtimeQuotRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8FC4ED2678593A00C9A716 /* RealtimeQuotRepo.swift */; };
+		8C8FC4F026787B7700C9A716 /* MockRealtimeQuotRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8FC4EF26787B7700C9A716 /* MockRealtimeQuotRepo.swift */; };
+		8C8FC4F32679982D00C9A716 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8FC4F22679982D00C9A716 /* TimeUtil.swift */; };
 		8CDF7BC8264B7BBF000A9835 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDF7BC7264B7BBF000A9835 /* AppDelegate.swift */; };
 		8CDF7BCA264B7BBF000A9835 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDF7BC9264B7BBF000A9835 /* SceneDelegate.swift */; };
 		8CDF7BCC264B7BBF000A9835 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDF7BCB264B7BBF000A9835 /* SettingsViewController.swift */; };
@@ -23,10 +28,15 @@
 
 /* Begin PBXFileReference section */
 		37383F58C1D381C8016A8ED4 /* Pods-ios_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_app.debug.xcconfig"; path = "Target Support Files/Pods-ios_app/Pods-ios_app.debug.xcconfig"; sourceTree = "<group>"; };
+		8C02D1CA2673584300698A46 /* QuotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotDetailViewController.swift; sourceTree = "<group>"; };
 		8C17E9472653587700E5DFE3 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8C366F32265B9C8500760420 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		8C366F35265BB50000760420 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		8C8FC4EB2678525800C9A716 /* QuotItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotItem.swift; sourceTree = "<group>"; };
+		8C8FC4ED2678593A00C9A716 /* RealtimeQuotRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeQuotRepo.swift; sourceTree = "<group>"; };
+		8C8FC4EF26787B7700C9A716 /* MockRealtimeQuotRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRealtimeQuotRepo.swift; sourceTree = "<group>"; };
+		8C8FC4F22679982D00C9A716 /* TimeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
 		8CDF7BC4264B7BBF000A9835 /* ios_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CDF7BC7264B7BBF000A9835 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CDF7BC9264B7BBF000A9835 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +71,7 @@
 				8C366F34265BB4C200760420 /* main */,
 				8C17E9472653587700E5DFE3 /* WebViewController.swift */,
 				8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */,
+				8C02D1CA2673584300698A46 /* QuotDetailViewController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -97,6 +108,24 @@
 			path = main;
 			sourceTree = "<group>";
 		};
+		8C8FC4EA2678522600C9A716 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8C8FC4EB2678525800C9A716 /* QuotItem.swift */,
+				8C8FC4ED2678593A00C9A716 /* RealtimeQuotRepo.swift */,
+				8C8FC4EF26787B7700C9A716 /* MockRealtimeQuotRepo.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		8C8FC4F12679980C00C9A716 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				8C8FC4F22679982D00C9A716 /* TimeUtil.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		8CDF7BBB264B7BBF000A9835 = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +147,9 @@
 		8CDF7BC6264B7BBF000A9835 /* ios_app */ = {
 			isa = PBXGroup;
 			children = (
+				8C8FC4EA2678522600C9A716 /* model */,
 				8C17E944265357A300E5DFE3 /* ui */,
+				8C8FC4F12679980C00C9A716 /* util */,
 				8CDF7BC7264B7BBF000A9835 /* AppDelegate.swift */,
 				8CDF7BC9264B7BBF000A9835 /* SceneDelegate.swift */,
 				8CDF7BCD264B7BBF000A9835 /* Main.storyboard */,
@@ -272,12 +303,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C366F38265CC7CE00760420 /* NewsDetailViewController.swift in Sources */,
+				8C8FC4F026787B7700C9A716 /* MockRealtimeQuotRepo.swift in Sources */,
 				8CDF7BCC264B7BBF000A9835 /* SettingsViewController.swift in Sources */,
 				8CDF7BC8264B7BBF000A9835 /* AppDelegate.swift in Sources */,
 				8CDF7BCA264B7BBF000A9835 /* SceneDelegate.swift in Sources */,
 				8C17E9482653587700E5DFE3 /* WebViewController.swift in Sources */,
+				8C8FC4EC2678525800C9A716 /* QuotItem.swift in Sources */,
+				8C02D1CB2673584300698A46 /* QuotDetailViewController.swift in Sources */,
+				8C8FC4F32679982D00C9A716 /* TimeUtil.swift in Sources */,
 				8C366F33265B9C8500760420 /* InfoViewController.swift in Sources */,
 				8C366F36265BB50000760420 /* MainTabBarController.swift in Sources */,
+				8C8FC4EE2678593A00C9A716 /* RealtimeQuotRepo.swift in Sources */,
 				8CE24F1D264D120C00D95F9E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

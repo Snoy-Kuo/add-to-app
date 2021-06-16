@@ -1,4 +1,5 @@
 import Flutter
+import Combine
 
 class HomeViewController: FlutterViewController {
     
@@ -6,21 +7,35 @@ class HomeViewController: FlutterViewController {
     let HOST_OPEN_URL = "HOST_OPEN_URL"
     let HOST_OPEN_NEWS_TYPE = "HOST_OPEN_NEWS_TYPE"
     let HOST_OPEN_NEWS_DETAIL = "HOST_OPEN_NEWS_DETAIL"
+    let HOST_OPEN_QUOT_DETAIL = "HOST_OPEN_QUOT_DETAIL"
+    let CLIENT_UPDATE_QUOT = "CLIENT_UPDATE_QUOT"
     
     private var channel: FlutterMethodChannel?
+    private let repo: RealtimeQuotRepo = MockRealtimeQuotRepo() //TODO: move to vm
+    private var observableQuotIem : PassthroughSubject<QuotItem?,Never>? = nil//Observalbe
+    private var cancelable: Cancellable? = nil
+    private let app = (UIApplication.shared.delegate as! AppDelegate)
     
     init(withEntrypoint entryPoint: String?) {
         let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
-        
+        observableQuotIem = repo.observeRealtimeQuote()
         super.init(engine: flutterEngine, nibName: nil, bundle: nil)
     }
     
     required init(coder aDecoder: NSCoder) {
+        observableQuotIem = repo.observeRealtimeQuote()
         super.init(coder: aDecoder)
+    }
+    
+    private func initQuotUpdate() {
+        cancelable = observableQuotIem?.sink { item in
+            self.channel?.invokeMethod(self.CLIENT_UPDATE_QUOT, arguments: item?.toJson)
+        }
     }
     
     override func viewDidLoad() {
         initChannel()
+        initQuotUpdate()
         super.viewDidLoad()
         
     }
@@ -30,7 +45,6 @@ class HomeViewController: FlutterViewController {
                                        binaryMessenger: self.binaryMessenger)
         channel!.setMethodCallHandler({
             [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
-            print("[initChannel] call.method=\(call.method)")
             
             // Note: this method is invoked on the UI thread.
             switch(call.method){
@@ -47,6 +61,13 @@ class HomeViewController: FlutterViewController {
             case self?.HOST_OPEN_NEWS_DETAIL:do {
                 let args = call.arguments as! Dictionary<String, Any>
                 self?.pushNewsDetail(dictArgs:args)
+                result(nil)
+                
+                break
+            }
+            case self?.HOST_OPEN_QUOT_DETAIL:do{
+                let args = call.arguments as! Dictionary<String, Any>
+                self?.pushQuotDetail(dictArgs:args)
                 result(nil)
                 
                 break
@@ -73,6 +94,10 @@ class HomeViewController: FlutterViewController {
             let destVC = segue.destination as? NewsDetailViewController
             let dictArgs = sender as! [String:Any]
             destVC?.setNews(id: dictArgs["id"] as! Int, title: dictArgs["title"] as! String)
+        } else if (segue.identifier == "HomeToQuotDetail"){
+            let destVC = segue.destination as? QuotDetailViewController
+            let dictArgs = sender as! [String:Any]
+            destVC?.setQuot(id: dictArgs["id"] as! String, name: dictArgs["name"] as! String)
         }
     }
     
@@ -85,8 +110,21 @@ class HomeViewController: FlutterViewController {
         self.tabBarController?.selectedIndex = 1
     }
     
-    func pushNewsDetail(dictArgs:[String:Any]){
+    private func pushNewsDetail(dictArgs:[String:Any]){
         performSegue(withIdentifier: "HomeToNewsDetail", sender: dictArgs)
     }
     
+    private func pushQuotDetail(dictArgs:[String:Any]){
+        performSegue(withIdentifier: "HomeToQuotDetail", sender: dictArgs)
+    }
+    
+    override func viewDidAppear(_ animated:Bool){
+        super.viewDidAppear(animated)
+        repo.toggleRealtimeQuote(enable: app.isRealtimeQuot)
+    }
+    
+    override func viewWillDisappear(_ animated:Bool){
+        repo.toggleRealtimeQuote(enable: false)
+        super.viewWillDisappear(animated)
+    }
 }

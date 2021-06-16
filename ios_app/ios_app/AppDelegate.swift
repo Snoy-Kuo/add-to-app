@@ -13,6 +13,7 @@ class AppDelegate: FlutterAppDelegate {
     
     let HOME_ENGINE_NAME = "HOME_ENGINE_NAME"
     lazy var flutterEngine = FlutterEngine(name: HOME_ENGINE_NAME)
+    var isRealtimeQuot:Bool = false
     
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Runs the default Dart entrypoint with a default Flutter route.

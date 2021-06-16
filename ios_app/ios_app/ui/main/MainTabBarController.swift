@@ -18,7 +18,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("[MainTabBarController][tabBarController]Selected view controller=\(String(describing: type(of:viewController)))")
         guard viewController is InfoViewController else {
             return
         }

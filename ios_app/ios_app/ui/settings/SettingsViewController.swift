@@ -12,6 +12,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var lbCenter: UILabel!
     @IBOutlet weak var sgAppreance: UISegmentedControl!
+    @IBOutlet weak var swRealtime: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class SettingsViewController: UIViewController {
         lbCenter.isUserInteractionEnabled = true
         lbCenter.addGestureRecognizer(tap)
         sgAppreance.addTarget(self, action: #selector(onAppearanceSelected(sender:)), for:.valueChanged)
+        swRealtime.addTarget(self, action: #selector(self.switchRealtimeQuot(sender:)), for: .valueChanged)
     }
     
     @objc func showFlutter(){
@@ -57,6 +59,12 @@ class SettingsViewController: UIViewController {
             }
             }
         }
+    }
+    
+    @objc func switchRealtimeQuot(sender:UISwitch!)
+    {
+        let app = (UIApplication.shared.delegate as! AppDelegate)
+        app.isRealtimeQuot = sender.isOn
     }
 }
 
