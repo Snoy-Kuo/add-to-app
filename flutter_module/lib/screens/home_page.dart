@@ -65,9 +65,12 @@ class MyHomePage extends StatelessWidget {
                   Divider(
                     thickness: 4,
                   ),
+                  MenuView(
+                    onItemClick: (index) => onMenuItemClick(index),
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width,
+                    height: 50,
                     child: Center(
                       child: Text(
                         title ?? 'This is Home Widget\n from module',
@@ -127,6 +130,57 @@ class MyHomePage extends StatelessWidget {
     _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_QUOT_DETAIL,
         <String, dynamic>{'id': item.id, 'name': item.name});
     _channelHandler.bloc?.channelCubit?.emit(HostOpenQuotDetail(item: item));
+  }
+
+  void onMenuItemClick(int index) {
+    dev.log('onMenuItemClick, index=$index');
+    switch (index) {
+      case 0:
+        {
+          //Flash
+          NewsType type = NewsType.Type3;
+          _channelHandler.invokeMethod(
+              MethodChannelHandler.HOST_OPEN_NEWS_TYPE, type.index);
+          _channelHandler.bloc?.channelCubit
+              ?.emit(HostOpenNewsType(type: type));
+        }
+        break;
+      case 1:
+        {
+          //Calendar
+          NewsType type = NewsType.Type4;
+          _channelHandler.invokeMethod(
+              MethodChannelHandler.HOST_OPEN_NEWS_TYPE, type.index);
+          _channelHandler.bloc?.channelCubit
+              ?.emit(HostOpenNewsType(type: type));
+        }
+        break;
+      case 2:
+        {
+          //Live
+          String url =
+              'https://www.youtube.com/channel/UC4R8DWoMoI7CAwX8_LjQHig';
+          _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
+          _channelHandler.bloc?.channelCubit?.emit(HostOpenUrl(url: url));
+        }
+        break;
+      case 3:
+        {
+          //Contact
+          String url = 'https://www.answers.com/';
+          _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
+          _channelHandler.bloc?.channelCubit?.emit(HostOpenUrl(url: url));
+        }
+        break;
+      case 4:
+        {
+          //Course
+          String url = 'https://www.udemy.com/';
+          _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
+          _channelHandler.bloc?.channelCubit?.emit(HostOpenUrl(url: url));
+        }
+        break;
+    }
   }
 
   ThemeData _getThemeDataByMode(BuildContext context) {
