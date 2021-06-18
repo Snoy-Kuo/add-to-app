@@ -31,6 +31,10 @@ class _MainPageState extends State<MainPage> {
         type = 'Good News';
       } else if (subIndex == 2) {
         type = 'Bad News';
+      } else if (subIndex == 3) {
+        type = 'Flash News';
+      }else if (subIndex == 4) {
+        type = 'Calendar News';
       }
       text = Text(
         'This is Info Widget, \nType=$type',
@@ -64,7 +68,7 @@ class _MainPageState extends State<MainPage> {
         Navigator.of(context).pushNamed('/web', arguments: state.url);
       } else if (state is HostOpenNewsType) {
         //open Tab
-        _onItemTapped(1, (state.type == NewsType.Type1) ? 1 : 2);
+        _onItemTapped(1, state.type.index + 1);
       } else if (state is HostOpenNewsDetail) {
         //open NewsDetailPage
         Navigator.of(context).pushNamed('/news_detail', arguments: state.item);

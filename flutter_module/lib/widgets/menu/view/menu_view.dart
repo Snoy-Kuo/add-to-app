@@ -53,7 +53,8 @@ class MenuView extends StatelessWidget {
             onTap: () => onItemClick(4),
             child: Image(
               image: AssetImage(
-                  './assets/images/banner.png'.lightDarkPath(context),
+                './assets/images/banner.png'.lightDarkPath(context),
+                package: 'flutter_module',
               ),
               fit: BoxFit.fitWidth,
               height: MediaQuery.of(context).size.width * 111 / 375,

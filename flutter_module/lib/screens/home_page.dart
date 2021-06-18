@@ -158,8 +158,7 @@ class MyHomePage extends StatelessWidget {
       case 2:
         {
           //Live
-          String url =
-              'https://www.youtube.com/channel/UC4R8DWoMoI7CAwX8_LjQHig';
+          String url = 'https://www.linetv.tw/';
           _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_URL, url);
           _channelHandler.bloc?.channelCubit?.emit(HostOpenUrl(url: url));
         }

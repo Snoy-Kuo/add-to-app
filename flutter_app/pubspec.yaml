@@ -27,7 +27,7 @@ dependencies:
     path: ../flutter_module/
   equatable: ^2.0.0
   flutter_bloc: ^7.0.0
-  webview_flutter: ^2.0.4
+  webview_flutter: ^2.0.8
   group_button: ^2.1.2
 
 dev_dependencies:

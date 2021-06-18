@@ -36,8 +36,8 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
-    - assets/images/dark/
+    - packages/flutter_module/assets/images/banner.png
+    - packages/flutter_module/assets/images/dark/banner.png
 
 
   # This section identifies your Flutter project as a module meant for
