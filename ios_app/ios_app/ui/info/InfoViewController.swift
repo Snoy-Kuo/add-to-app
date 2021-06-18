@@ -27,8 +27,17 @@ class InfoViewController: UIViewController {
         case 1:
             subIndexText = "Good News"
             break
-        default:
+        case 2:
             subIndexText = "Bad News"
+            break
+        case 3:
+            subIndexText = "Flash News"
+            break
+        case 4:
+            subIndexText = "Calendar News"
+            break
+        default:
+            subIndexText = "What News"
             break
         }
         lbCenter?.text = "This is info VC,\nType=\(subIndexText)"
