@@ -70,6 +70,7 @@ class SettingsFragment : Fragment() {
         swRealtime.setOnCheckedChangeListener { _, isChecked ->
             App.isRealtimeQuot = isChecked
         }
+        swRealtime.isChecked = App.isRealtimeQuot
 
         return root
     }

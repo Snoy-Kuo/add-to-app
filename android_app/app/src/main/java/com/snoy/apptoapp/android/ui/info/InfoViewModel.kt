@@ -14,7 +14,10 @@ class InfoViewModel : ViewModel() {
         val subIndexText = when (subIndex) {
             0 -> "All News"
             1 -> "Good News"
-            else -> "Bad News"
+            2 -> "Bad News"
+            3 -> "Flash News"
+            4 -> "Calendar News"
+            else -> "What News"
         }
         _text.value = "This is info Fragment,\nType=$subIndexText"
     }
