@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/widgets/news_ticker/bloc/news_ticker_bloc.dart';
 import 'package:flutter_module/widgets/news_ticker/model/model.dart';
+import 'package:flutter_module/l10n/l10n.dart';
 
 class NewsTickerView extends StatelessWidget {
   final NewsRepo repository;
@@ -55,7 +56,7 @@ class NewsTickerView extends StatelessWidget {
                                   SizedBox(width: 5),
                                   Expanded(
                                     child: Text(
-                                      '[${(item.type == NewsType.Type1) ? 'Good News' : 'Bad News'}] ${item.title}',
+                                      '[${(item.type == NewsType.Type1) ? l10n(context).goodNews : l10n(context).badNews}] ${item.title}',
                                       style:
                                           Theme.of(context).textTheme.subtitle2,
                                     ),
@@ -67,7 +68,7 @@ class NewsTickerView extends StatelessWidget {
                                         onMoreClick!(item);
                                     },
                                     child: Text(
-                                      'more >',
+                                      '${l10n(context).more} >',
                                       style:
                                           Theme.of(context).textTheme.bodyText2,
                                     ),

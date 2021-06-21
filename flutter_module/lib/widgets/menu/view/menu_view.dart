@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_module/l10n/l10n.dart';
 
 import 'menu_cell.dart';
 
@@ -22,28 +21,28 @@ class MenuView extends StatelessWidget {
               Expanded(
                 child: MenuCell(
                   icon: Icons.flash_on,
-                  label: 'Flash',
+                  label: l10n(context).flash,
                   onItemClick: () => onItemClick(0),
                 ),
               ),
               Expanded(
                 child: MenuCell(
                   icon: Icons.calendar_today_outlined,
-                  label: 'Calendar',
+                  label: l10n(context).calendar,
                   onItemClick: () => onItemClick(1),
                 ),
               ),
               Expanded(
                 child: MenuCell(
                   icon: Icons.live_tv,
-                  label: 'Live',
+                  label: l10n(context).live,
                   onItemClick: () => onItemClick(2),
                 ),
               ),
               Expanded(
                 child: MenuCell(
                   icon: Icons.contact_support_outlined,
-                  label: 'Support',
+                  label: l10n(context).support,
                   onItemClick: () => onItemClick(3),
                 ),
               ),
@@ -81,7 +80,6 @@ extension PathUtil on String {
           darkPath = darkPath + '${list[i]}/';
         }
       }
-      log('lightPath=$this, darkPath=$darkPath');
 
       return darkPath;
     }

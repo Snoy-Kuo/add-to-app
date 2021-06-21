@@ -72,3 +72,19 @@ class ClientUpdateQuot extends ChannelState {
   @override
   List<Object?> get props => [item];
 }
+
+class ClientGetLocale extends ChannelState {
+  final int _time = DateTime.now().millisecondsSinceEpoch;
+
+  @override
+  List<Object?> get props => [_time];
+}
+
+class ClientChangeLocale extends ChannelState {
+  final Locale locale;
+
+  ClientChangeLocale({required this.locale});
+
+  @override
+  List<Object?> get props => [locale];
+}

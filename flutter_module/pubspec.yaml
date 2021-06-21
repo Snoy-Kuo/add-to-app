@@ -18,15 +18,18 @@ description: Add to App Flutter module
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
+  sdk: ">=2.13.3 <3.0.0"
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
   carousel_slider: ^4.0.0-nullsafety.0
   equatable: ^2.0.0
   flutter_bloc: ^7.0.0
   smooth_page_indicator: ^0.3.0-nullsafety.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +37,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
   # To add assets to your application, add an assets section, like this:
   assets:
     - packages/flutter_module/assets/images/banner.png

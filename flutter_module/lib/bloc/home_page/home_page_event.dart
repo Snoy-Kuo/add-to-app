@@ -12,6 +12,15 @@ class ChangeTheme extends HomePageEvent {
   List<Object?> get props => [mode];
 }
 
+class ChangeLocale extends HomePageEvent {
+  final Locale locale;
+
+  ChangeLocale({required this.locale});
+
+  @override
+  List<Object?> get props => [locale];
+}
+
 class UpdateQuot extends HomePageEvent {
   final QuotItem item;
 

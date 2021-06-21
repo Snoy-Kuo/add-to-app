@@ -1,0 +1,10 @@
+{
+  "goodNews": "好消息",
+  "badNews": "壞消息",
+  "more": "更多",
+  "flash": "速報",
+  "calendar": "日曆",
+  "live": "直播",
+  "support": "協助",
+  "thisIsFromModule": "這是在module中的\n {widgetName} Widget"
+}

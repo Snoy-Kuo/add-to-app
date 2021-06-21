@@ -1,0 +1,17 @@
+{
+  "goodNews": "Good News",
+  "badNews": "Bad News",
+  "more": "more",
+  "flash": "Flash",
+  "calendar": "Calendar",
+  "live": "Live",
+  "support": "Support",
+  "thisIsFromModule": "This is {widgetName} Widget\n from module",
+  "@thisIsFromModule": {
+    "placeholders": {
+      "widgetName": {
+        "type": "String"
+      }
+    }
+  }
+}

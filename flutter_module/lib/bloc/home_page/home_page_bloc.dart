@@ -14,7 +14,8 @@ part 'home_page_state.dart';
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   ChannelCubit? channelCubit;
-  late ThemeMode themeMode = ThemeMode.system;
+  ThemeMode themeMode = ThemeMode.system;
+  Locale locale = Locale('zh','TW');//('zh');//'en');
   StockTickerBloc? stockTickerBloc;
 
   // ignore: cancel_subscriptions
@@ -25,11 +26,14 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       return;
     }
     channelCubit!.emit(ClientGetTheme());
+    channelCubit!.emit(ClientGetLocale());
     channelSub = channelCubit!.stream.listen((state) {
       //listen to host state, and add hp event
       if (state is ClientChangeTheme) {
         add(ChangeTheme(mode: state.mode));
-      } else if (state is ClientUpdateQuot) {
+      } else if (state is ClientChangeLocale) {
+        add(ChangeLocale(locale: state.locale));
+      }else if (state is ClientUpdateQuot) {
         stockTickerBloc?.add(UpdateStockTicker(item: state.item));
       }
     });
@@ -41,6 +45,9 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   ) async* {
     if (event is ChangeTheme) {
       this.themeMode = event.mode;
+      yield HomePageUpdated();
+    } else if (event is ChangeLocale) {
+      this.locale = event.locale;
       yield HomePageUpdated();
     } else if (event is UpdateQuot) {
       //from method channel

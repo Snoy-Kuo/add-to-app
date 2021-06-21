@@ -1,22 +1,24 @@
 import 'dart:developer' as dev;
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/bloc/bloc.dart';
+import 'package:flutter_module/l10n/l10n.dart';
 import 'package:flutter_module/method_channel/method_channel_handler.dart';
 import 'package:flutter_module/theme/app_theme.dart';
 import 'package:flutter_module/widgets/stock_ticker/bloc/stock_ticker_bloc.dart';
 import 'package:flutter_module/widgets/widgets.dart';
+import 'package:intl/intl.dart';
 
 class MyHomePage extends StatelessWidget {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 
-  final String? title;
   final MethodChannelHandler _channelHandler = MethodChannelHandler();
 
-  MyHomePage([this.title]);
+  MyHomePage();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,10 @@ class MyHomePage extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
+
+    Locale myLocale = Localizations.localeOf(context);
+    String curLocale = Intl.getCurrentLocale();
+    log('current locale=$myLocale, curLocale=$curLocale');
 
     return BlocProvider<HomePageBloc>(
       create: (_) {
@@ -45,40 +51,37 @@ class MyHomePage extends StatelessWidget {
           }
           //build by state
           final ThemeData themeData = _getThemeDataByMode(context);
+          final Locale locale = BlocProvider.of<HomePageBloc>(context).locale;
           return Theme(
             data: themeData,
-            child: Container(
-              color: themeData.scaffoldBackgroundColor,
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  BannerView(
-                    repository: MockBannerRepo(),
-                    onItemClick: (item) => onBannerItemClick(item),
-                  ),
-                  NewsTickerView(
-                    repository: MockNewsRepo(),
-                    onItemClick: (item) => onNewsTickerItemClick(item),
-                    onMoreClick: (item) => onNewsTickerMoreClick(item),
-                  ),
-                  _stockTickerView(),
-                  Divider(
-                    thickness: 4,
-                  ),
-                  MenuView(
-                    onItemClick: (index) => onMenuItemClick(index),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    child: Center(
-                      child: Text(
-                        title ?? 'This is Home Widget\n from module',
-                        style: themeData.textTheme.headline5,
-                      ),
+            child: Localizations.override(
+              context: context,
+              locale: locale,
+              delegates: l10nDelegates,
+              child: Container(
+                color: themeData.scaffoldBackgroundColor,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    BannerView(
+                      repository: MockBannerRepo(),
+                      onItemClick: (item) => onBannerItemClick(item),
                     ),
-                  ),
-                ],
+                    NewsTickerView(
+                      repository: MockNewsRepo(),
+                      onItemClick: (item) => onNewsTickerItemClick(item),
+                      onMoreClick: (item) => onNewsTickerMoreClick(item),
+                    ),
+                    _stockTickerView(),
+                    Divider(
+                      thickness: 4,
+                    ),
+                    MenuView(
+                      onItemClick: (index) => onMenuItemClick(index),
+                    ),
+                    HomePageLabel(),
+                  ],
+                ),
               ),
             ),
           );
@@ -200,4 +203,21 @@ class MyHomePage extends StatelessWidget {
     }
     return themeData;
   }
+}
+
+class HomePageLabel extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 60,
+      child: Center(
+        child: Text(
+          l10n(context).thisIsFromModule('Home'),
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+      ),
+    );
+  }
+
 }
