@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/flutter_module.dart';
 
 import 'bloc/app_bloc.dart';
+import 'l10n/l10n.dart';
 import 'screens/main_page.dart';
 
 /// This is the main application widget.
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
           theme: appLightThemeDate(),
           darkTheme: appDarkThemeDate(),
           themeMode: appBloc.themeMode,
+          localizationsDelegates: L10n.localizationsDelegates,
+          supportedLocales:L10n.supportedLocales,
+          locale: appBloc.locale,
         );
       },
     );

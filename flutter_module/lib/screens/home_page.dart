@@ -1,5 +1,4 @@
 import 'dart:developer' as dev;
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_module/method_channel/method_channel_handler.dart';
 import 'package:flutter_module/theme/app_theme.dart';
 import 'package:flutter_module/widgets/stock_ticker/bloc/stock_ticker_bloc.dart';
 import 'package:flutter_module/widgets/widgets.dart';
-import 'package:intl/intl.dart';
 
 class MyHomePage extends StatelessWidget {
   static const TextStyle optionStyle =
@@ -27,9 +25,7 @@ class MyHomePage extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
 
-    Locale myLocale = Localizations.localeOf(context);
-    String curLocale = Intl.getCurrentLocale();
-    log('current locale=$myLocale, curLocale=$curLocale');
+    // log('Localizations.localeOf(context)=${Localizations.localeOf(context)}, Intl.getCurrentLocale()=${Intl.getCurrentLocale()}, Platform.localeName=${Platform.localeName}');
 
     return BlocProvider<HomePageBloc>(
       create: (_) {
@@ -205,7 +201,7 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class HomePageLabel extends StatelessWidget{
+class HomePageLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -219,5 +215,4 @@ class HomePageLabel extends StatelessWidget{
       ),
     );
   }
-
 }

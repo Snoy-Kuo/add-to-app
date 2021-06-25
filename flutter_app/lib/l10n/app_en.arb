@@ -1,0 +1,42 @@
+{
+  "home": "Home",
+  "info": "Info",
+  "settings": "Settings",
+  "thisIsInfoWidget": "This is Info Widget, \nType={infoType}",
+  "@thisIsInfoWidget": {
+    "placeholders": {
+      "infoType": {
+        "type": "String"
+      }
+    }
+  },
+  "allNews": "All News",
+  "goodNews": "Good News",
+  "badNews": "Bad News",
+  "flashNews": "Flash News",
+  "calendarNews": "Calendar News",
+  "themeMode": "Theme Mode:",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "language": "Language:",
+  "realtimeQuot": "Realtime Quot:",
+  "thisIsSettingsWidget": "This is Settings Widget",
+  "thisIsNewsDetailWidget": "This is NewsDetail Page, \nid={id}",
+  "@thisIsNewsDetailWidget": {
+    "placeholders": {
+      "id": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "thisIsQuotDetailWidget": "This is QuotDetail Page, \nid={id}",
+  "@thisIsQuotDetailWidget": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -9,8 +9,11 @@ class HomePageInitial extends HomePageState {
 }
 
 class HomePageUpdated extends HomePageState {
-  HomePageUpdated();
+  final ThemeMode themeMode;
+  final Locale locale;
+
+  HomePageUpdated({required this.themeMode, required this.locale});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [themeMode, locale];
 }

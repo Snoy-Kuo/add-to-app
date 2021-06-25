@@ -17,6 +17,15 @@ class AppThemeChanged extends AppState {
   List<Object?> get props => [mode];
 }
 
+class AppLanguageChanged extends AppState {
+  final Locale locale;
+
+  AppLanguageChanged({required this.locale});
+
+  @override
+  List<Object?> get props => [locale];
+}
+
 class AppRealtimeQuotSwitched extends AppState {
   final bool isRealtime;
 

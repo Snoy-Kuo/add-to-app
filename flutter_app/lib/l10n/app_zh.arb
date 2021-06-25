@@ -1,0 +1,20 @@
+{
+  "home": "首页",
+  "info": "资讯",
+  "settings": "设定",
+  "thisIsInfoWidget": "这是 Info Widget, \n类型={infoType}",
+  "allNews": "所有消息",
+  "goodNews": "好消息",
+  "badNews": "坏消息",
+  "flashNews": "最新消息",
+  "calendarNews": "日历消息",
+  "themeMode": "主题模式：",
+  "light": "亮色",
+  "dark": "暗色",
+  "system": "系统决定",
+  "language": "语言:",
+  "realtimeQuot": "即时行情:",
+  "thisIsSettingsWidget": "这是 Settings Widget",
+  "thisIsNewsDetailWidget": "这是 NewsDetail Page, \nid={id}",
+  "thisIsQuotDetailWidget": "这是 QuotDetail Page, \nid={id}"
+}

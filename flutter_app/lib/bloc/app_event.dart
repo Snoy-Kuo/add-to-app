@@ -12,6 +12,15 @@ class AppChangeTheme extends AppEvent {
   List<Object?> get props => [mode];
 }
 
+class AppChangeLanguage extends AppEvent {
+  final String language;
+
+  AppChangeLanguage({required this.language});
+
+  @override
+  List<Object?> get props => [language];
+}
+
 class AppSwitchRealtimeQuote extends AppEvent {
   final bool isRealtime;
 

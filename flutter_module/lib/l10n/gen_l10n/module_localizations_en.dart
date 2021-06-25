@@ -1,7 +1,7 @@
 
 
 
-import 'app_localizations.dart';
+import 'module_localizations.dart';
 
 /// The translations for English (`en`).
 class AppLocalizationsEn extends AppLocalizations {

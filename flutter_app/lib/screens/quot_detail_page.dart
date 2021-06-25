@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/flutter_module.dart';
+import '../l10n/l10n.dart';
 
 class QuotDetailPage extends StatelessWidget {
   @override
@@ -13,7 +14,7 @@ class QuotDetailPage extends StatelessWidget {
       ),
       body: Container(
         child: Center(
-          child: Text('This is QuotDetail Page, \nid=${item.id}'),
+          child: Text(L10n.of(context)!.thisIsQuotDetailWidget(item.id)),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bloc/app_bloc.dart';
+import 'package:flutter_app/l10n/l10n.dart';
 import 'package:flutter_app/screens/settings_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/flutter_module.dart';
@@ -13,7 +14,7 @@ class MainPage extends StatefulWidget {
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   int _selectedIndex = 0;
   int _selectedSubIndex = 0;
 
@@ -26,18 +27,18 @@ class _MainPageState extends State<MainPage> {
       style: optionStyle,
     );
     if (index == 1) {
-      String type = 'All News';
+      String type = L10n.of(context)!.allNews;
       if (subIndex == 1) {
-        type = 'Good News';
+        type = L10n.of(context)!.goodNews;
       } else if (subIndex == 2) {
-        type = 'Bad News';
+        type = L10n.of(context)!.badNews;
       } else if (subIndex == 3) {
-        type = 'Flash News';
-      }else if (subIndex == 4) {
-        type = 'Calendar News';
+        type = L10n.of(context)!.flashNews;
+      } else if (subIndex == 4) {
+        type = L10n.of(context)!.calendarNews;
       }
       text = Text(
-        'This is Info Widget, \nType=$type',
+        L10n.of(context)!.thisIsInfoWidget(type),
         style: optionStyle,
       );
     }
@@ -55,7 +56,21 @@ class _MainPageState extends State<MainPage> {
   late StreamSubscription blocSubs;
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      //update language by change system settings(Android)
+      AppBloc appBloc = context.read<AppBloc>();
+      String languageMode = appBloc.languageMode;
+      if (languageMode == 'System') {
+        appBloc.add(AppChangeLanguage(language: languageMode));
+        appBloc.chCubit.emit(ClientChangeLanguage(language: languageMode));
+      }
+    }
+  }
+
+  @override
   void initState() {
+    WidgetsBinding.instance!.addObserver(this);
     super.initState();
     initCubitHandler();
   }
@@ -78,6 +93,12 @@ class _MainPageState extends State<MainPage> {
             mode: BlocProvider.of<AppBloc>(context).themeMode,
           ),
         );
+      } else if (state is ClientGetLanguage) {
+        cubit.emit(
+          ClientChangeLanguage(
+            language: BlocProvider.of<AppBloc>(context).languageMode,
+          ),
+        );
       } else if (state is HostOpenQuotDetail) {
         //open QuotDetailPage
         Navigator.of(context).pushNamed('/quot_detail', arguments: state.item);
@@ -87,6 +108,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
     blocSubs.cancel();
     super.dispose();
   }
@@ -105,18 +127,18 @@ class _MainPageState extends State<MainPage> {
         child: _getSelectedWidget(_selectedIndex, _selectedSubIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: L10n.of(context)!.home,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            label: 'Info',
+            label: L10n.of(context)!.info,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: L10n.of(context)!.settings,
           ),
         ],
         currentIndex: _selectedIndex,

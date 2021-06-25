@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/flutter_module.dart';
+import '../l10n/l10n.dart';
 
 class NewsDetailPage extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class NewsDetailPage extends StatelessWidget {
       // to allow calling Scaffold.of(context) so we can show a snackbar.
       body: Container(
         child: Center(
-          child: Text('This is NewsDetail Page, \nid=${item.id}'),
+          child: Text( L10n.of(context)!.thisIsNewsDetailWidget(item.id)),
         ),
       ),
     );

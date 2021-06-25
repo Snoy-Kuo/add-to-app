@@ -6,8 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'app_localizations_en.dart';
-import 'app_localizations_zh.dart';
+import 'module_localizations_en.dart';
+import 'module_localizations_zh.dart';
 
 /// Callers can lookup localized strings with an instance of AppLocalizations returned
 /// by `AppLocalizations.of(context)`.
@@ -17,7 +17,7 @@ import 'app_localizations_zh.dart';
 /// supportedLocales list. For example:
 ///
 /// ```
-/// import 'gen_l10n/app_localizations.dart';
+/// import 'gen_l10n/module_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: AppLocalizations.localizationsDelegates,

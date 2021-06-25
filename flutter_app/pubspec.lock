@@ -83,6 +83,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.0"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_module:
     dependency: "direct main"
     description:
@@ -102,6 +107,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   matcher:
     dependency: transitive
     description:
@@ -213,5 +225,5 @@ packages:
     source: hosted
     version: "2.0.8"
 sdks:
-  dart: ">=2.13.0 <3.0.0"
+  dart: ">=2.13.3 <3.0.0"
   flutter: ">=2.0.0"

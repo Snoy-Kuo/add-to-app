@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/realtime_quot_repo.dart';
 import 'package:flutter_module/flutter_module.dart';
-import 'package:meta/meta.dart';
 
 part 'app_event.dart';
 
@@ -16,6 +15,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final ChannelCubit chCubit;
 
   ThemeMode themeMode = ThemeMode.system;
+  String languageMode = 'System';
+  Locale locale = languageToLocale('System').supportLocale();
   bool isRealtime = false;
   late StreamSubscription realtimeSubs;
 
@@ -34,6 +35,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (event is AppChangeTheme) {
       themeMode = event.mode;
       yield AppThemeChanged(mode: themeMode);
+    } else if (event is AppChangeLanguage) {
+      languageMode = event.language;
+      locale = languageToLocale(event.language).supportLocale();
+      yield AppLanguageChanged(locale: locale);
     } else if (event is AppSwitchRealtimeQuote) {
       isRealtime = event.isRealtime;
       rtRepo.toggleRealtimeQuote(isRealtime);
