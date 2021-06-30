@@ -4,7 +4,6 @@ import 'package:flutter_module/screens/home_page.dart';
 // import 'l10n/l10n.dart';
 
 class MyHomePageApp extends StatelessWidget {
-
   MyHomePageApp();
 
   @override

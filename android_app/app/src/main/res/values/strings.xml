@@ -3,4 +3,19 @@
     <string name="title_home">Home</string>
     <string name="title_info">Info</string>
     <string name="title_settings">Settings</string>
+    <string name="this_is_info_widget">This is Info Widget,\nType=%s</string>
+    <string name="all_news">All News</string>
+    <string name="good_news">Good News</string>
+    <string name="bad_news">Bad News</string>
+    <string name="flash_news">Flash News</string>
+    <string name="calendar_news">Calendar News</string>
+    <string name="theme_mode">Theme Mode:</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system">System</string>
+    <string name="language">Language:</string>
+    <string name="realtime_quot">Realtime Quot:</string>
+    <string name="this_is_settings_page">This is Settings Page</string>
+    <string name="this_is_news_detail_page">This is NewsDetail Page, \nid=%d</string>
+    <string name="this_is_quot_detail_page">This is QuotDetail Page, , \nid=%s</string>
 </resources>

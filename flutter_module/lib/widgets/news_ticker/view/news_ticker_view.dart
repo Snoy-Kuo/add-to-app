@@ -2,9 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_module/l10n/l10n.dart';
 import 'package:flutter_module/widgets/news_ticker/bloc/news_ticker_bloc.dart';
 import 'package:flutter_module/widgets/news_ticker/model/model.dart';
-import 'package:flutter_module/l10n/l10n.dart';
 
 class NewsTickerView extends StatelessWidget {
   final NewsRepo repository;

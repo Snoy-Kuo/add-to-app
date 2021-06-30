@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.snoy.apptoapp.android.R
 import com.snoy.apptoapp.android.databinding.ActivityNewsDetailBinding
 
 class NewsDetailActivity : AppCompatActivity() {
@@ -38,8 +39,8 @@ class NewsDetailActivity : AppCompatActivity() {
         content = binding.content
         title = binding.title
 
-        val id: String = intent.getStringExtra("id") ?: ""
-        content.text = "This is NewsDetailActivity\nid=$id"
+        val id: Int = intent.getIntExtra("id", -1)
+        content.text = getString(R.string.this_is_news_detail_page, id)
         val titleText: String = intent.getStringExtra("title") ?: ""
         title.text = titleText
     }

@@ -1,9 +1,9 @@
 //copy all from flutter_gen/gen_l10n to /l10n/gen_l10n for using l10n in package, be sure all updates copied,
 //or you can manually generate app_localizations files, ref = https://github.com/flutter/flutter/issues/70840#issuecomment-732548224
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_module/utils/log_util.dart';
 
 import 'gen_l10n/module_localizations.dart';
 import 'gen_l10n/module_localizations_en.dart';
@@ -33,8 +33,8 @@ AppLocalizations l10nTest({Locale locale = const Locale('en', '')}) {
 }
 
 extension l10nUtil on Locale {
-  Locale supportLocale(){
-    if (AppLocalizations.supportedLocales.indexOf(this)!=-1){
+  Locale supportLocale() {
+    if (AppLocalizations.supportedLocales.indexOf(this) != -1) {
       return this;
     } else {
       return AppLocalizations.supportedLocales.first;
@@ -68,7 +68,8 @@ Locale languageToLocale(String value) {
         try {
           countryCode = Platform.localeName.split('_')[1];
         } catch (e) {
-          log('extract countryCode err, localeName=${Platform.localeName}, e=$e');
+          LogUtil.e(
+              'extract countryCode err, localeName=${Platform.localeName}, e=$e');
         }
         if (countryCode == 'Hant') {
           countryCode = 'TW';
@@ -77,10 +78,10 @@ Locale languageToLocale(String value) {
               countryCode = 'HK';
             }
           } catch (e) {
-            log('extract countryCode Hant err, localeName=${Platform.localeName}, e=$e');
+            LogUtil.e(
+                'extract countryCode Hant err, localeName=${Platform.localeName}, e=$e');
           }
-        }
-        else if (countryCode == 'Hans'){
+        } else if (countryCode == 'Hans') {
           countryCode = 'CN';
         }
         locale = Locale(languageCode, countryCode);

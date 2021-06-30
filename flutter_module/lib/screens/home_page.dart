@@ -1,5 +1,3 @@
-import 'dart:developer' as dev;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +5,7 @@ import 'package:flutter_module/bloc/bloc.dart';
 import 'package:flutter_module/l10n/l10n.dart';
 import 'package:flutter_module/method_channel/method_channel_handler.dart';
 import 'package:flutter_module/theme/app_theme.dart';
+import 'package:flutter_module/utils/log_util.dart';
 import 'package:flutter_module/widgets/stock_ticker/bloc/stock_ticker_bloc.dart';
 import 'package:flutter_module/widgets/widgets.dart';
 
@@ -25,7 +24,7 @@ class MyHomePage extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
 
-    // log('Localizations.localeOf(context)=${Localizations.localeOf(context)}, Intl.getCurrentLocale()=${Intl.getCurrentLocale()}, Platform.localeName=${Platform.localeName}');
+    // LogUtil.d('Localizations.localeOf(context)=${Localizations.localeOf(context)}, Intl.getCurrentLocale()=${Intl.getCurrentLocale()}, Platform.localeName=${Platform.localeName}');
 
     return BlocProvider<HomePageBloc>(
       create: (_) {
@@ -37,6 +36,10 @@ class MyHomePage extends StatelessWidget {
         }
         final bloc = HomePageBloc(channelCubit);
         _channelHandler.bloc = bloc;
+        _channelHandler.bloc!.channelCubit?.emit(ClientGetTheme());
+
+        _channelHandler.invokeMethod(MethodChannelHandler.CLIENT_GET_LANGUAGE);
+        _channelHandler.bloc!.channelCubit?.emit(ClientGetLanguage());
 
         return bloc;
       },
@@ -124,7 +127,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   void onStockTickerItemClick(QuotItem? item) {
-    dev.log('onStockTickerItemClick, item=$item');
+    LogUtil.d('item=$item');
     if (item == null) return;
     _channelHandler.invokeMethod(MethodChannelHandler.HOST_OPEN_QUOT_DETAIL,
         <String, dynamic>{'id': item.id, 'name': item.name});
@@ -132,7 +135,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   void onMenuItemClick(int index) {
-    dev.log('onMenuItemClick, index=$index');
+    LogUtil.d('index=$index');
     switch (index) {
       case 0:
         {

@@ -16,11 +16,13 @@
 
     <TextView
         android:id="@+id/theme_caption"
+        style="@android:style/TextAppearance.DeviceDefault"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:paddingHorizontal="10dp"
-        android:text="Theme Mode:"
+        android:text="@string/theme_mode"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spacer" />
@@ -41,33 +43,55 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="Light" />
+            android:text="@string/light" />
 
         <RadioButton
             android:id="@+id/radio_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Dark" />
+            android:text="@string/dark" />
 
         <RadioButton
             android:id="@+id/radio_system"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="System" />
+            android:text="@string/system" />
 
     </RadioGroup>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch_realtime"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="Realtime Quot:"
+        android:padding="10dp"
+        android:text="@string/realtime_quot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radio_group_theme"
         app:switchPadding="20dp" />
+
+    <TextView
+        android:id="@+id/language_caption"
+        style="@android:style/TextAppearance.DeviceDefault"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:gravity="start|bottom"
+        android:paddingHorizontal="10dp"
+        android:text="@string/language"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_language"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_realtime" />
+
+    <Spinner
+        android:id="@+id/spinner_language"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/language_caption"
+        app:layout_constraintTop_toBottomOf="@+id/switch_realtime" />
 
     <TextView
         android:id="@+id/text_settings"

@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +13,6 @@ import com.snoy.apptoapp.android.App
 import com.snoy.apptoapp.android.R
 import com.snoy.apptoapp.android.databinding.FragmentSettingsBinding
 import com.snoy.apptoapp.android.ui.MainActivity
-import com.snoy.apptoapp.android.ui.WebViewActivity
 import com.snoy.apptoapp.android.util.setStatusViewHeight
 
 class SettingsFragment : Fragment() {
@@ -38,16 +36,20 @@ class SettingsFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textSettings
-        settingsViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
+        settingsViewModel.textRes.observe(viewLifecycleOwner, {
+            textView.setText(it)
         })
-        textView.setOnClickListener {
-//            startActivity(FlutterActivity.createDefaultIntent(requireActivity()))
-            WebViewActivity.openActivity(context = requireContext(), url = "https://www.google.com")
-        }
 
         binding.spacer.setStatusViewHeight()
 
+        initRadioGroupTheme()
+        initSwitchRealtime()
+        initSpinnerLanguage()
+
+        return root
+    }
+
+    private fun initRadioGroupTheme() {
         val currentMode = readMode()
 
         val rgThemeMode = binding.radioGroupTheme
@@ -65,14 +67,60 @@ class SettingsFragment : Fragment() {
         binding.radioLight.setOnClickListener { view -> onRadioButtonClicked(view) }
         binding.radioDark.setOnClickListener { view -> onRadioButtonClicked(view) }
         binding.radioSystem.setOnClickListener { view -> onRadioButtonClicked(view) }
+    }
 
+    private fun initSwitchRealtime() {
         val swRealtime = binding.switchRealtime
         swRealtime.setOnCheckedChangeListener { _, isChecked ->
             App.isRealtimeQuot = isChecked
         }
         swRealtime.isChecked = App.isRealtimeQuot
+    }
 
-        return root
+    private fun initSpinnerLanguage() {
+        val selectIndex = when (readLanguage()) {
+            "English" -> 0
+            "简体中文" -> 1
+            "繁體中文" -> 2
+            else -> 3
+        }
+
+        val spinner: Spinner = binding.spinnerLanguage
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.language_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
+        spinner.setSelection(selectIndex)
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+                val selectedLanguage = when (position) {
+                    0 -> "English"
+                    1 -> "简体中文"
+                    2 -> "繁體中文"
+                    else -> "System"
+                }
+
+                MainActivity.openSettings(requireContext(), readMode(), selectedLanguage)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                //do nothing
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -101,7 +149,7 @@ class SettingsFragment : Fragment() {
                         mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
                     }
             }//when
-            MainActivity.openSettings(view.context, mode)
+            MainActivity.openSettings(view.context, mode, readLanguage())
         }
     }
 
@@ -109,5 +157,11 @@ class SettingsFragment : Fragment() {
         val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val defaultValue = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
         return sharedPref.getInt("ThemeMode", defaultValue)
+    }
+
+    private fun readLanguage(): String {
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val defaultValue = "System"
+        return sharedPref.getString("Language", defaultValue) ?: defaultValue
     }
 }

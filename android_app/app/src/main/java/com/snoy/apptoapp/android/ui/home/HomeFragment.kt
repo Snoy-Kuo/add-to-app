@@ -1,5 +1,6 @@
 package com.snoy.apptoapp.android.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.LiveData
@@ -27,6 +28,8 @@ class HomeFragment : FlutterFragment() {
         const val HOST_OPEN_NEWS_DETAIL = "HOST_OPEN_NEWS_DETAIL"
         const val HOST_OPEN_QUOT_DETAIL = "HOST_OPEN_QUOT_DETAIL"
         const val CLIENT_UPDATE_QUOT = "CLIENT_UPDATE_QUOT"
+        const val CLIENT_GET_LANGUAGE = "CLIENT_GET_LANGUAGE"
+        const val CLIENT_CHANGE_LANGUAGE = "CLIENT_CHANGE_LANGUAGE"
     }
 
     private var channel: MethodChannel? = null
@@ -110,6 +113,9 @@ class HomeFragment : FlutterFragment() {
                         result.error("OPEN QUOT DETAIL ERROR", e.message, null)
                     }
                 }
+                CLIENT_GET_LANGUAGE -> {
+                    channel?.invokeMethod(CLIENT_CHANGE_LANGUAGE, readLanguage())
+                }
                 else -> {
                     result.notImplemented()
                 }
@@ -132,6 +138,7 @@ class HomeFragment : FlutterFragment() {
         lifecycleScope.launch {
             repo.toggleRealtimeQuote(App.isRealtimeQuot)
         }
+        channel?.invokeMethod(CLIENT_CHANGE_LANGUAGE, readLanguage())
     }
 
     override fun onPause() {
@@ -139,5 +146,11 @@ class HomeFragment : FlutterFragment() {
             repo.toggleRealtimeQuote(false)
         }
         super.onPause()
+    }
+
+    private fun readLanguage(): String {
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val defaultValue = "System"
+        return sharedPref.getString("Language", defaultValue) ?: defaultValue
     }
 }

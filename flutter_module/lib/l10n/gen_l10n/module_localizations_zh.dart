@@ -1,6 +1,3 @@
-
-
-
 import 'module_localizations.dart';
 
 /// The translations for Chinese (`zh`).
@@ -36,7 +33,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
 /// The translations for Chinese, as used in China (`zh_CN`).
 class AppLocalizationsZhCn extends AppLocalizationsZh {
-  AppLocalizationsZhCn(): super('zh_CN');
+  AppLocalizationsZhCn() : super('zh_CN');
 
   @override
   String get goodNews => '好消息';
@@ -67,7 +64,7 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
 
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
 class AppLocalizationsZhHk extends AppLocalizationsZh {
-  AppLocalizationsZhHk(): super('zh_HK');
+  AppLocalizationsZhHk() : super('zh_HK');
 
   @override
   String get goodNews => '好消息';
@@ -98,7 +95,7 @@ class AppLocalizationsZhHk extends AppLocalizationsZh {
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
 class AppLocalizationsZhHans extends AppLocalizationsZh {
-  AppLocalizationsZhHans(): super('zh_Hans');
+  AppLocalizationsZhHans() : super('zh_Hans');
 
   @override
   String get goodNews => '好消息';
@@ -129,7 +126,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
 class AppLocalizationsZhHant extends AppLocalizationsZh {
-  AppLocalizationsZhHant(): super('zh_Hant');
+  AppLocalizationsZhHant() : super('zh_Hant');
 
   @override
   String get goodNews => '好消息';
@@ -160,7 +157,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
 class AppLocalizationsZhTw extends AppLocalizationsZh {
-  AppLocalizationsZhTw(): super('zh_TW');
+  AppLocalizationsZhTw() : super('zh_TW');
 
   @override
   String get goodNews => '好消息';

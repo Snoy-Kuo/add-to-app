@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_module/bloc/channel/channel_cubit.dart';
 import 'package:flutter_module/flutter_module.dart';
+import 'package:flutter_module/utils/log_util.dart';
 import 'package:flutter_module/widgets/stock_ticker/bloc/stock_ticker_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -28,13 +29,14 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     if (channelCubit == null) {
       return;
     }
-    channelCubit!.emit(ClientGetTheme());
-    channelCubit!.emit(ClientGetLanguage());
+
     channelSub = channelCubit!.stream.listen((state) {
       //listen to host state, and add hp event
       if (state is ClientChangeTheme) {
         add(ChangeTheme(mode: state.mode));
       } else if (state is ClientChangeLanguage) {
+        LogUtil.d(
+            '[HomePageBloc][constructor]channelCubit!.stream.listen state=$state');
         add(ChangeLocale(locale: languageToLocale(state.language)));
       } else if (state is ClientUpdateQuot) {
         stockTickerBloc?.add(UpdateStockTicker(item: state.item));
@@ -49,6 +51,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       yield HomePageUpdated(themeMode: themeMode, locale: locale);
     } else if (event is ChangeLocale) {
       this.locale = event.locale.supportLocale();
+      LogUtil.d('event=$event, locale=$locale');
       yield HomePageUpdated(themeMode: themeMode, locale: locale);
     } else if (event is UpdateQuot) {
       //from method channel

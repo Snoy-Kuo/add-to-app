@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-enum NewsType { Type1, Type2 , Type3, Type4}
+enum NewsType { Type1, Type2, Type3, Type4 }
 
 class NewsItem extends Equatable {
   final int id;

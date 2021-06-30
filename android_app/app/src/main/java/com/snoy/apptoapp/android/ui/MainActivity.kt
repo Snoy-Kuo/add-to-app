@@ -14,6 +14,7 @@ import com.snoy.apptoapp.android.ui.home.HomeFragment
 import com.snoy.apptoapp.android.ui.info.InfoFragment
 import com.snoy.apptoapp.android.ui.settings.SettingsFragment
 import com.snoy.apptoapp.android.util.hideSystemUI
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,11 +27,12 @@ class MainActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
 
-        fun openSettings(context: Context, themeMode: Int) {
+        fun openSettings(context: Context, themeMode: Int, language: String) {
             val intent = Intent(context, MainActivity::class.java).apply {
                 putExtra("index", 2)
                 putExtra("subIndex", 0)
                 putExtra("themeMode", themeMode)
+                putExtra("language", language)
             }
             context.startActivity(intent)
         }
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     private var index: Int = 0
     private var subIndex: Int = 0
     private var themeMode: Int = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+    private var language: String = "System"
 
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -116,15 +119,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun readLanguage(): String {
+        val defaultValue = "System"
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        return sharedPref.getString("Language", defaultValue) ?: defaultValue
+    }
+
+    private fun saveLanguage(language: String) {
+        val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()) {
+            putString("Language", language)
+            apply()
+        }
+    }
+
     private fun processExtraData() {
         //use the data received here
         index = intent.getIntExtra("index", 0)
         subIndex = intent.getIntExtra("subIndex", 0)
         themeMode = intent.getIntExtra("themeMode", readMode())
+        language = intent.getStringExtra("language") ?: "System"
 
         if (index == 2) {
             val currentMode = readMode()
-            if (currentMode != themeMode) {
+            val currentLanguage = readLanguage()
+            if (currentMode != themeMode || currentLanguage != language) {
+                if (currentLanguage != language) {
+                    saveLanguage(language)
+                    setAppLocale(this, language)
+                }
                 finish()
                 startActivity(intent.apply { addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION) })
                 return
@@ -146,11 +169,18 @@ class MainActivity : AppCompatActivity() {
         index = intent.getIntExtra("index", 0)
         subIndex = intent.getIntExtra("subIndex", 0)
         themeMode = intent.getIntExtra("themeMode", readMode())
+        language = intent.getStringExtra("language") ?: "System"
 
         val currentMode = readMode()
         if (currentMode != themeMode) {
             saveMode(themeMode)
             AppCompatDelegate.setDefaultNightMode(themeMode)
+        }
+
+        val currentLanguage = readLanguage()
+        if (currentLanguage != language) {
+            saveLanguage(language)
+            setAppLocale(this, language)
         }
 
         val navView: BottomNavigationView = binding.navView
@@ -160,6 +190,32 @@ class MainActivity : AppCompatActivity() {
             2 -> R.id.navigation_app_settings
             else -> R.id.navigation_home
         }
+    }
+
+    private fun setAppLocale(context: Context, language: String) {
+
+        val locale = when (language) {
+            "English" -> Locale.US
+            "简体中文" -> Locale.CHINA
+            "繁體中文" -> Locale.TAIWAN
+            else -> {
+                val currentSysLocale: Locale = Locale.getDefault()
+                if (currentSysLocale.language == "zh") {
+                    if (currentSysLocale.country == "HK" || currentSysLocale.country == "TW") {
+                        Locale.TAIWAN
+                    } else {
+                        Locale.CHINA
+                    }
+                } else {
+                    Locale.US
+                }
+            }
+        }
+        Locale.setDefault(locale)
+        val config = context.resources.configuration
+        config.setLocale(locale)
+        context.createConfigurationContext(config)
+        context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
 
     /**

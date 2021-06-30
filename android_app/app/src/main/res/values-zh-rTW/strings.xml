@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App to App Android</string>
+    <string name="title_home">首頁</string>
+    <string name="title_info">資訊</string>
+    <string name="title_settings">設定</string>
+    <string name="this_is_info_widget">這是 Info Widget,\n類型=%s</string>
+    <string name="all_news">所有消息</string>
+    <string name="good_news">好消息</string>
+    <string name="bad_news">壞消息</string>
+    <string name="flash_news">最新消息</string>
+    <string name="calendar_news">日曆消息</string>
+    <string name="theme_mode">主題模式：</string>
+    <string name="light">亮色</string>
+    <string name="dark">暗色</string>
+    <string name="system">系統決定</string>
+    <string name="language">語言:</string>
+    <string name="realtime_quot">即時行情:</string>
+    <string name="this_is_settings_page">這是 Settings Page</string>
+    <string name="this_is_news_detail_page">這是 NewsDetail Page, \nid=%d</string>
+    <string name="this_is_quot_detail_page">這是 QuotDetail Page, \nid=%s</string>
+</resources>

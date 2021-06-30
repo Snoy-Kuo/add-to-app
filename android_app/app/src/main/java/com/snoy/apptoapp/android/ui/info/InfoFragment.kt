@@ -57,7 +57,7 @@ class InfoFragment : Fragment() {
         this.subIndex = subIndex
         arguments = Bundle().apply { putInt("subIndex", subIndex) }
         if (::viewModel.isInitialized) {
-            viewModel.setText(this.subIndex)
+            viewModel.setText(this.requireContext(), this.subIndex)
         }
     }
 }
