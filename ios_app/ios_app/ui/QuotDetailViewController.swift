@@ -24,7 +24,7 @@ class QuotDetailViewController: UIViewController{
     
     private func setText(){
         navTitle?.title = quotTitle
-        lbCenter?.text = "This is QuotDetail VC,\nid=\(quotId)"
+        lbCenter?.text = String(format:"this_is_quot_detail_vc".l10n(), quotId)
     }
     
     func setQuot(id:String, name:String){

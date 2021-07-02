@@ -4,11 +4,17 @@ PODS:
     - Flutter
   - FlutterPluginRegistrant (0.0.1):
     - Flutter
+  - LanguageManager-iOS (1.2.5)
 
 DEPENDENCIES:
   - Flutter (from `../flutter_module/.ios/Flutter/engine`)
   - flutter_module (from `../flutter_module/.ios/Flutter`)
   - FlutterPluginRegistrant (from `../flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
+  - LanguageManager-iOS
+
+SPEC REPOS:
+  trunk:
+    - LanguageManager-iOS
 
 EXTERNAL SOURCES:
   Flutter:
@@ -22,7 +28,8 @@ SPEC CHECKSUMS:
   Flutter: ac41d61a47ae5bf8195a5598d2d63754888ec0d5
   flutter_module: d1e1ff44505640bd9aa37f23f63380c646272be4
   FlutterPluginRegistrant: 2afd5ea46d3a949472c9b7da6462d8fbf7d8b16e
+  LanguageManager-iOS: 049345fe4d1c5fbe22af93d438540917f4936359
 
-PODFILE CHECKSUM: 3e7181372dca1e0acc76ce434e1f2562354f0e15
+PODFILE CHECKSUM: c17efbee738a95d0fb09935d4bbaad32e78aae24
 
 COCOAPODS: 1.10.1

@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  ios_app
+
+  Created by Snoy Kuo on 2021/7/2.
+  
+*/
+
+
+"Home" = "Home";
+"Info" = "Info";
+"Settings" = "Settings";
+"this-is-info-vc" = "This is Info VC,\nType=%@";
+"all_news" = "All News";
+"good_news" = "Good News";
+"bad_news" = "Bad News";
+"flash_news" ="Flash News";
+"calendar_news" = "Calendar New";
+"theme_mode" = "Theme Mode:";
+"light" = "Light";
+"dark" = "Dark";
+"System" = "System";
+"language" = "Language:";
+"realtime_quot" = "Realtime Quot:";
+"this_is_settings_vc" = "This is Settings VC";
+"this_is_news_detail_vc" = "This is NewsDetail VC, \nid=%d";
+"this_is_quot_detail_vc" = "This is QuotDetail VC, , \nid=%@";

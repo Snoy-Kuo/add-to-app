@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class InfoViewController: UIViewController {
     
@@ -22,25 +23,26 @@ class InfoViewController: UIViewController {
         var subIndexText:String
         switch (subIndex) {
         case 0:
-            subIndexText = "All News"
+            subIndexText = "all_news".l10n()
             break
         case 1:
-            subIndexText = "Good News"
+            subIndexText = "good_news".l10n()
             break
         case 2:
-            subIndexText = "Bad News"
+            subIndexText = "bad_news".l10n()
             break
         case 3:
-            subIndexText = "Flash News"
+            subIndexText = "flash_news".l10n()
             break
         case 4:
-            subIndexText = "Calendar News"
+            subIndexText = "calendar_news".l10n()
             break
         default:
-            subIndexText = "What News"
+            subIndexText = "what_news".l10n()
             break
         }
-        lbCenter?.text = "This is info VC,\nType=\(subIndexText)"
+        lbCenter?.text = String( format: "this-is-info-vc".l10n(), subIndexText)
+        //"This is info VC,\nType=\(subIndexText)"
     }
     
     func setSubIndex(value:Int){

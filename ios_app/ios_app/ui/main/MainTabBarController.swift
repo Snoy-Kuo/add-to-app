@@ -26,4 +26,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let infoVC = viewController as! InfoViewController
         infoVC.setSubIndex(value:0)
     }
+    
+    func navTo(page:Int) -> UIViewController{
+        
+        if (page < 0 || page > 2){
+            return self
+        }
+        self.selectedIndex = page
+        return self
+    }
 }

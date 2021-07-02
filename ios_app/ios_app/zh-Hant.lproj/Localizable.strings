@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  ios_app
+
+  Created by Snoy Kuo on 2021/7/2.
+  
+*/
+
+
+"Home" = "首頁";
+"Info" = "資訊";
+"Settings" = "設定";
+"this-is-info-vc" = "這是 Info VC,\n類型=%@";
+"all_news" = "所有消息";
+"good_news" = "好消息";
+"bad_news" = "壞消息";
+"flash_news" ="最新消息";
+"calendar_news" = "日曆消息";
+"theme_mode" = "主題模式：";
+"light" = "亮色";
+"dark" = "暗色";
+"System" = "系統決定";
+"language" = "語言:";
+"realtime_quot" = "即時行情:";
+"this_is_settings_vc" = "這是 Settings VC";
+"this_is_news_detail_vc" = "這是 NewsDetail VC, \nid=%d";
+"this_is_quot_detail_vc" = "這是 QuotDetail VC, , \nid=%@";

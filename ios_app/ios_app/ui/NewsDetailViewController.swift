@@ -24,7 +24,7 @@ class NewsDetailViewController: UIViewController{
     
     private func setText(){
         navTitle?.title = newsTitle
-        lbCenter?.text = "This is NewsDetail VC,\nid=\(newsId)"
+        lbCenter?.text = String(format:"this_is_news_detail_vc".l10n(), newsId)
     }
     
     func setNews(id:Int, title:String){

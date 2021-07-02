@@ -9,6 +9,8 @@ class HomeViewController: FlutterViewController {
     let HOST_OPEN_NEWS_DETAIL = "HOST_OPEN_NEWS_DETAIL"
     let HOST_OPEN_QUOT_DETAIL = "HOST_OPEN_QUOT_DETAIL"
     let CLIENT_UPDATE_QUOT = "CLIENT_UPDATE_QUOT"
+    let CLIENT_GET_LANGUAGE = "CLIENT_GET_LANGUAGE"
+    let CLIENT_CHANGE_LANGUAGE = "CLIENT_CHANGE_LANGUAGE"
     
     private var channel: FlutterMethodChannel?
     private let repo: RealtimeQuotRepo = MockRealtimeQuotRepo() //TODO: move to vm
@@ -17,7 +19,7 @@ class HomeViewController: FlutterViewController {
     private let app = (UIApplication.shared.delegate as! AppDelegate)
     
     init(withEntrypoint entryPoint: String?) {
-        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
+        let flutterEngine = app.flutterEngine
         observableQuotIem = repo.observeRealtimeQuote()
         super.init(engine: flutterEngine, nibName: nil, bundle: nil)
     }
@@ -72,6 +74,10 @@ class HomeViewController: FlutterViewController {
                 
                 break
             }
+            case self?.CLIENT_GET_LANGUAGE:do{
+                self?.channel?.invokeMethod(self?.CLIENT_CHANGE_LANGUAGE ?? "", arguments: self?.app.selectedLanguage)
+                break
+            }
             default: do{
                 result(FlutterMethodNotImplemented)
                 break
@@ -121,6 +127,7 @@ class HomeViewController: FlutterViewController {
     override func viewDidAppear(_ animated:Bool){
         super.viewDidAppear(animated)
         repo.toggleRealtimeQuote(enable: app.isRealtimeQuot)
+        self.channel?.invokeMethod(CLIENT_CHANGE_LANGUAGE, arguments:app.selectedLanguage)
     }
     
     override func viewWillDisappear(_ animated:Bool){
