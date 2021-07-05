@@ -14,6 +14,7 @@ class AppDelegate: FlutterAppDelegate {
     
     let HOME_ENGINE_NAME = "HOME_ENGINE_NAME"
     lazy var flutterEngine = FlutterEngine(name: HOME_ENGINE_NAME)
+    var themeMode:UIUserInterfaceStyle = UIUserInterfaceStyle.unspecified
     var isRealtimeQuot : Bool = false
     var selectedLanguage : String? {
         get {

@@ -28,7 +28,9 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         lbCenter.isUserInteractionEnabled = true
         lbCenter.addGestureRecognizer(tap)
         sgAppreance.addTarget(self, action: #selector(onAppearanceSelected(sender:)), for:.valueChanged)
+        sgAppreance.selectedSegmentIndex = themeModeToIndex(mode: app.themeMode)
         swRealtime.addTarget(self, action: #selector(self.switchRealtimeQuot(sender:)), for: .valueChanged)
+        swRealtime.isOn = app.isRealtimeQuot
         
         tfLanguage.text = app.selectedLanguage!.l10n()
         tfLanguage.delegate = self
@@ -37,7 +39,11 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @objc func showFlutter(){
-        let flutterEngine = app.flutterEngine
+        let flutterEngine = app.flutterEngine //use cached engine
+        // use new engine
+        // let flutterEngine = FlutterEngine(name: app.HOME_ENGINE_NAME)
+        // flutterEngine.run();
+        //
         let flutterViewController =
             FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
         present(flutterViewController, animated: true, completion: nil)
@@ -58,18 +64,33 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             
             switch(index){
             case 0:do { //Light
-                view.window?.overrideUserInterfaceStyle = .light
+                app.themeMode = .light
                 break
             }
             case 1:do { //dark
-                view.window?.overrideUserInterfaceStyle = .dark
+                app.themeMode = .dark
                 break
             }
             default:do { //system
-                view.window?.overrideUserInterfaceStyle = .unspecified
+                app.themeMode = .unspecified
                 break
             }
             }
+            view.window?.overrideUserInterfaceStyle = app.themeMode
+        }
+    }
+    
+    private func themeModeToIndex(mode: UIUserInterfaceStyle) -> Int {
+        switch(mode){
+        case .light:do { //Light
+            return 0
+        }
+        case .dark:do { //dark
+            return 1
+        }
+        default:do { //system
+            return 2
+        }
         }
     }
     
@@ -130,13 +151,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             // the view controller that you want to show after changing the language
             let main: MainTabBarController = storyboard.instantiateViewController(identifier: "\(MainTabBarController.self)") as! MainTabBarController
             return main.navTo(page:2)
-            //            return storyboard.instantiateInitialViewController()!
         }
-        //        animation: { view in
-        // do custom animation
-        //            view.transform = CGAffineTransform(scaleX: 2, y: 2)
-        //            view.alpha = 0
-        //        }
     }
     
 }
