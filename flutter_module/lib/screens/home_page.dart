@@ -7,6 +7,8 @@ import 'package:flutter_module/method_channel/method_channel_handler.dart';
 import 'package:flutter_module/theme/app_theme.dart';
 import 'package:flutter_module/utils/log_util.dart';
 import 'package:flutter_module/widgets/stock_ticker/bloc/stock_ticker_bloc.dart';
+import 'package:flutter_module/widgets/type_article_list/model/mock_type_article_repo.dart';
+import 'package:flutter_module/widgets/type_article_list/view/type_article_list_view.dart';
 import 'package:flutter_module/widgets/widgets.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -78,6 +80,10 @@ class MyHomePage extends StatelessWidget {
                     MenuView(
                       onItemClick: (index) => onMenuItemClick(index),
                     ),
+                    TypeArticleListView(
+                        repository: MockTypeArticleRepo(),
+                        onItemClick: (item) => onTypeArticleListItemClick(item),
+                    ),
                     HomePageLabel(),
                   ],
                 ),
@@ -140,7 +146,7 @@ class MyHomePage extends StatelessWidget {
       case 0:
         {
           //Flash
-          NewsType type = NewsType.Type3;
+          NewsType type = NewsType.TypeFlash;
           _channelHandler.invokeMethod(
               MethodChannelHandler.HOST_OPEN_NEWS_TYPE, type.index);
           _channelHandler.bloc?.channelCubit
@@ -150,7 +156,7 @@ class MyHomePage extends StatelessWidget {
       case 1:
         {
           //Calendar
-          NewsType type = NewsType.Type4;
+          NewsType type = NewsType.TypeCalendar;
           _channelHandler.invokeMethod(
               MethodChannelHandler.HOST_OPEN_NEWS_TYPE, type.index);
           _channelHandler.bloc?.channelCubit
@@ -182,6 +188,11 @@ class MyHomePage extends StatelessWidget {
         }
         break;
     }
+  }
+
+  void onTypeArticleListItemClick(NewsItem? item){
+    if (item == null) return;
+    LogUtil.d('item=$item');
   }
 
   ThemeData _getThemeDataByMode(BuildContext context) {

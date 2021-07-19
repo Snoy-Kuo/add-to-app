@@ -1,4 +1,4 @@
-import 'news_item.dart';
+import '../../../models/news/news_item.dart';
 import 'news_repo.dart';
 
 class MockNewsRepo implements NewsRepo {
@@ -17,17 +17,17 @@ class MockNewsRepo implements NewsRepo {
       NewsItem(
         id: 0,
         title: 'Broken News 1',
-        type: NewsType.Type1,
+        type: NewsType.TypeGood,
       ),
       NewsItem(
         id: 1,
         title: 'Breaking News 2',
-        type: NewsType.Type2,
+        type: NewsType.TypeBad,
       ),
       NewsItem(
         id: 2,
         title: 'Will break News 3',
-        type: NewsType.Type1,
+        type: NewsType.TypeGood,
       ),
     ];
   }

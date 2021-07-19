@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_module/utils/log_util.dart';
 import 'package:flutter_module/widgets/news_ticker/model/model.dart';
-import 'package:flutter_module/widgets/news_ticker/model/news_item.dart';
+import 'package:flutter_module/models/news/news_item.dart';
 import 'package:meta/meta.dart';
 
 part 'news_ticker_event.dart';

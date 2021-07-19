@@ -56,7 +56,7 @@ class NewsTickerView extends StatelessWidget {
                                   SizedBox(width: 5),
                                   Expanded(
                                     child: Text(
-                                      '[${(item.type == NewsType.Type1) ? l10n(context).goodNews : l10n(context).badNews}] ${item.title}',
+                                      '[${(item.type == NewsType.TypeGood) ? l10n(context).goodNews : l10n(context).badNews}] ${item.title}',
                                       style:
                                           Theme.of(context).textTheme.subtitle2,
                                     ),
