@@ -19,4 +19,5 @@
     <string name="this_is_settings_page">这是 Settings Page</string>
     <string name="this_is_news_detail_page">这是 NewsDetail Page, \nid=%d</string>
     <string name="this_is_quot_detail_page">这是 QuotDetail Page, \nid=%s</string>
+    <string name="rookie_user">弱鸡使用者：</string>
 </resources>

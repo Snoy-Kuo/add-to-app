@@ -18,4 +18,5 @@
     <string name="this_is_settings_page">This is Settings Page</string>
     <string name="this_is_news_detail_page">This is NewsDetail Page, \nid=%d</string>
     <string name="this_is_quot_detail_page">This is QuotDetail Page, , \nid=%s</string>
+    <string name="rookie_user">Rookie User:</string>
 </resources>

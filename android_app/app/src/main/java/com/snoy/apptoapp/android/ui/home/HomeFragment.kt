@@ -30,6 +30,7 @@ class HomeFragment : FlutterFragment() {
         const val CLIENT_UPDATE_QUOT = "CLIENT_UPDATE_QUOT"
         const val CLIENT_GET_LANGUAGE = "CLIENT_GET_LANGUAGE"
         const val CLIENT_CHANGE_LANGUAGE = "CLIENT_CHANGE_LANGUAGE"
+        const val CLIENT_CHANGE_USER_LV = "CLIENT_CHANGE_USER_LV"
     }
 
     private var channel: MethodChannel? = null
@@ -139,6 +140,7 @@ class HomeFragment : FlutterFragment() {
             repo.toggleRealtimeQuote(App.isRealtimeQuot)
         }
         channel?.invokeMethod(CLIENT_CHANGE_LANGUAGE, readLanguage())
+        channel?.invokeMethod(CLIENT_CHANGE_USER_LV, App.isRookie)
     }
 
     override fun onPause() {

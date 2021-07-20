@@ -10,6 +10,7 @@ class App : Application() {
     companion object {
         const val HOME_ENGINE_ID = "HOME_ENGINE_ID"
         var isRealtimeQuot = false
+        var isRookie = true
     }
 
     private val homeEngine: FlutterEngine by lazy {

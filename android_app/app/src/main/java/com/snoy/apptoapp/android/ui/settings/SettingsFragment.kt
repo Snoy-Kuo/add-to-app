@@ -45,6 +45,7 @@ class SettingsFragment : Fragment() {
         initRadioGroupTheme()
         initSwitchRealtime()
         initSpinnerLanguage()
+        initSwitchRookieUser()
 
         return root
     }
@@ -163,5 +164,13 @@ class SettingsFragment : Fragment() {
         val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val defaultValue = "System"
         return sharedPref.getString("Language", defaultValue) ?: defaultValue
+    }
+
+    private fun initSwitchRookieUser() {
+        val swRookie = binding.switchRookie
+        swRookie.setOnCheckedChangeListener { _, isChecked ->
+            App.isRookie = isChecked
+        }
+        swRookie.isChecked = App.isRookie
     }
 }

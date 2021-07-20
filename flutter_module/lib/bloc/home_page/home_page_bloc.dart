@@ -64,6 +64,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       //from method channel
       stockTickerBloc?.add(UpdateStockTicker(item: event.item));
     } else if (event is ChangeUserLv) {
+      //from method channel
       this.isRookie = event.isRookie;
       typeArticleRepoBloc?.add(RefreshTypeArticleList(
           type: event.isRookie ? NewsType.TypeRookie : NewsType.TypeVeteran));

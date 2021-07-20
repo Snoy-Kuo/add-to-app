@@ -16,6 +16,7 @@ class MethodChannelHandler {
   static const String CLIENT_UPDATE_QUOT = 'CLIENT_UPDATE_QUOT';
   static const String CLIENT_GET_LANGUAGE = 'CLIENT_GET_LANGUAGE';
   static const String CLIENT_CHANGE_LANGUAGE = 'CLIENT_CHANGE_LANGUAGE';
+  static const String CLIENT_CHANGE_USER_LV = 'CLIENT_CHANGE_USER_LV';
 
   late MethodChannel _channel;
   HomePageBloc? bloc;
@@ -33,10 +34,11 @@ class MethodChannelHandler {
       if (call.method == CLIENT_UPDATE_QUOT) {
         bloc?.add(UpdateQuot(item: QuotItem.fromJson(call.arguments)));
       } else if (call.method == CLIENT_CHANGE_LANGUAGE) {
-        LogUtil.d('bloc=$bloc');
-
         bloc?.add(
             ChangeLocale(locale: languageToLocale(call.arguments.toString())));
+      } else if (call.method == CLIENT_CHANGE_USER_LV){
+        bloc?.add(
+            ChangeUserLv(isRookie: call.arguments));
       }
     });
   }

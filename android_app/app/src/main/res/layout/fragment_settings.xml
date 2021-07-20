@@ -93,6 +93,17 @@
         app:layout_constraintStart_toEndOf="@+id/language_caption"
         app:layout_constraintTop_toBottomOf="@+id/switch_realtime" />
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_rookie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/rookie_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/language_caption"
+        app:switchPadding="20dp" />
+
     <TextView
         android:id="@+id/text_settings"
         android:layout_width="match_parent"
@@ -105,6 +116,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_realtime"
+        app:layout_constraintTop_toBottomOf="@+id/switch_rookie"
         tools:text="This is settings Fragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
