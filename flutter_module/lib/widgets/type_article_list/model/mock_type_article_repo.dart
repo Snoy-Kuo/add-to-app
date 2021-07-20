@@ -11,16 +11,22 @@ class MockTypeArticleRepo implements TypeArticleRepo {
   @override
   Future<List<NewsItem>?> fetchArticleList({required NewsType type}) async {
     List<NewsItem>? list;
-    switch(type){
-      case NewsType.TypeRookie:{
-        list = _defaultFakeRookieList();
-      }break;
-      case NewsType.TypeVeteran:{
-        list = _defaultFakeVeteranList();
-      }break;
-      default:{
-        list = [];
-      }break;
+    switch (type) {
+      case NewsType.TypeRookie:
+        {
+          list = _defaultFakeRookieList();
+        }
+        break;
+      case NewsType.TypeVeteran:
+        {
+          list = _defaultFakeVeteranList();
+        }
+        break;
+      default:
+        {
+          list = [];
+        }
+        break;
     }
     return Future.delayed(delay, () => fakeList ?? list);
   }

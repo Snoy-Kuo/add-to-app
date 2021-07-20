@@ -10,11 +10,14 @@ class TypeArticleListLoading extends TypeArticleListState {
 
 class TypeArticleListLoaded extends TypeArticleListState {
   final List<NewsItem> list;
+  final NewsType type;
 
-  TypeArticleListLoaded([this.list = const []]);
+  // final int _time = DateTime.now().millisecondsSinceEpoch;
+
+  TypeArticleListLoaded({this.list = const [], required this.type});
 
   @override
-  List<Object?> get props => [list];
+  List<Object?> get props => [list, type];
 }
 
 class TypeArticleListError extends TypeArticleListState {

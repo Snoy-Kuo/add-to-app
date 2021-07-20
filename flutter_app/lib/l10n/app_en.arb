@@ -21,6 +21,9 @@
   "system": "System",
   "language": "Language:",
   "realtimeQuot": "Realtime Quot:",
+  "userLv": "User Level:",
+  "rookie": "Rookie",
+  "veteran": "Veteran",
   "thisIsSettingsWidget": "This is Settings Widget",
   "thisIsNewsDetailWidget": "This is NewsDetail Page, \nid={id}",
   "@thisIsNewsDetailWidget": {

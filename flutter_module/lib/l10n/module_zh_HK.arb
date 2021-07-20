@@ -6,5 +6,8 @@
   "calendar": "日曆",
   "live": "直播",
   "support": "協助",
-  "thisIsFromModule": "這是在module中的\n {widgetName} Widget"
+  "thisIsFromModule": "這是在module中的\n {widgetName} Widget",
+  "rookie": "弱雞",
+  "veteran": "老鳥",
+  "articles": "文章"
 }

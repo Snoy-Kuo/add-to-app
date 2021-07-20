@@ -89,3 +89,12 @@ class ClientUpdateQuot extends ChannelState {
   @override
   List<Object?> get props => [item];
 }
+
+class ClientChangeUserLv extends ChannelState {
+  final bool isRookie;
+
+  ClientChangeUserLv({required this.isRookie});
+
+  @override
+  List<Object?> get props => [isRookie];
+}

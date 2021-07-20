@@ -29,4 +29,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String thisIsFromModule(String widgetName) {
     return 'This is $widgetName Widget\n from module';
   }
+
+  @override
+  String get rookie => 'Rookie';
+
+  @override
+  String get veteran => 'Veteran';
+
+  @override
+  String get articles => 'Articles';
 }

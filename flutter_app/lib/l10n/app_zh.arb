@@ -14,6 +14,9 @@
   "system": "系统决定",
   "language": "语言:",
   "realtimeQuot": "即时行情:",
+  "userLv": "使用者等级:",
+  "rookie": "弱鸡",
+  "veteran": "老鸟",
   "thisIsSettingsWidget": "这是 Settings Widget",
   "thisIsNewsDetailWidget": "这是 NewsDetail Page, \nid={id}",
   "thisIsQuotDetailWidget": "这是 QuotDetail Page, \nid={id}"

@@ -13,5 +13,8 @@
         "type": "String"
       }
     }
-  }
+  },
+  "rookie": "Rookie",
+  "veteran": "Veteran",
+  "articles": "Articles"
 }

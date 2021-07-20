@@ -7,6 +7,7 @@ import 'package:flutter_module/method_channel/method_channel_handler.dart';
 import 'package:flutter_module/theme/app_theme.dart';
 import 'package:flutter_module/utils/log_util.dart';
 import 'package:flutter_module/widgets/stock_ticker/bloc/stock_ticker_bloc.dart';
+import 'package:flutter_module/widgets/type_article_list/bloc/type_article_list_bloc.dart';
 import 'package:flutter_module/widgets/type_article_list/model/mock_type_article_repo.dart';
 import 'package:flutter_module/widgets/type_article_list/view/type_article_list_view.dart';
 import 'package:flutter_module/widgets/widgets.dart';
@@ -47,12 +48,14 @@ class MyHomePage extends StatelessWidget {
       },
       child: BlocBuilder<HomePageBloc, HomePageState>(
         builder: (context, state) {
+          LogUtil.d('state=$state');
           if (_channelHandler.bloc == null) {
             _channelHandler.bloc = BlocProvider.of<HomePageBloc>(context);
           }
           //build by state
           final ThemeData themeData = _getThemeDataByMode(context);
           final Locale locale = BlocProvider.of<HomePageBloc>(context).locale;
+          final bool isRookie = BlocProvider.of<HomePageBloc>(context).isRookie;
           return Theme(
             data: themeData,
             child: Localizations.override(
@@ -80,10 +83,8 @@ class MyHomePage extends StatelessWidget {
                     MenuView(
                       onItemClick: (index) => onMenuItemClick(index),
                     ),
-                    TypeArticleListView(
-                        repository: MockTypeArticleRepo(),
-                        onItemClick: (item) => onTypeArticleListItemClick(item),
-                    ),
+                    _typeArticleListView(
+                        isRookie ? NewsType.TypeRookie : NewsType.TypeVeteran),
                     HomePageLabel(),
                   ],
                 ),
@@ -105,6 +106,22 @@ class MyHomePage extends StatelessWidget {
       },
       child: StockTickerView(
         onItemClick: (item) => onStockTickerItemClick(item),
+      ),
+    );
+
+    return w;
+  }
+
+  Widget _typeArticleListView(NewsType type) {
+    Widget w = BlocProvider<TypeArticleListBloc>(
+      create: (context) {
+        final TypeArticleListBloc bloc =
+            TypeArticleListBloc(repository: MockTypeArticleRepo());
+        context.read<HomePageBloc>().typeArticleRepoBloc = bloc;
+        return bloc..add(RefreshTypeArticleList(type: type));
+      },
+      child: TypeArticleListView(
+        onItemClick: (item) => onTypeArticleListItemClick(item),
       ),
     );
 
@@ -190,9 +207,8 @@ class MyHomePage extends StatelessWidget {
     }
   }
 
-  void onTypeArticleListItemClick(NewsItem? item){
-    if (item == null) return;
-    LogUtil.d('item=$item');
+  void onTypeArticleListItemClick(NewsItem? item) {
+    onNewsTickerItemClick(item);
   }
 
   ThemeData _getThemeDataByMode(BuildContext context) {

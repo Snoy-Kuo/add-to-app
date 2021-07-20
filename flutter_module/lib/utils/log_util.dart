@@ -17,6 +17,7 @@ class LogUtil {
   static d(dynamic message) {
     logger.d('$message');
   }
+
   static e(dynamic message) {
     logger.e('$message');
   }
@@ -50,11 +51,11 @@ class SingleLinePrinter extends LogPrinter {
       if (methodCount > 0) {
         stackTraceStr = formatStackTrace(StackTrace.current, methodCount);
       }
-    } else if (event.error == null){
+    } else if (event.error == null) {
       if (methodCount > 0) {
         stackTraceStr = formatStackTrace(event.stackTrace, methodCount);
       }
-    } else if (event.error !=null && errorMethodCount > 0) {
+    } else if (event.error != null && errorMethodCount > 0) {
       stackTraceStr = formatStackTrace(event.stackTrace, errorMethodCount);
     }
 
@@ -120,7 +121,9 @@ class SingleLinePrinter extends LogPrinter {
       return false;
     }
     return match.group(2)!.startsWith('package:logger') ||
-        match.group(2)!.startsWith('package:flutter_module/utils/log_util.dart') ;
+        match
+            .group(2)!
+            .startsWith('package:flutter_module/utils/log_util.dart');
   }
 
   bool _discardWebStacktraceLine(String line) {
@@ -129,7 +132,9 @@ class SingleLinePrinter extends LogPrinter {
       return false;
     }
     return match.group(1)!.startsWith('packages/logger') ||
-        match.group(1)!.startsWith('package:flutter_module/utils/log_util.dart') ||
+        match
+            .group(1)!
+            .startsWith('package:flutter_module/utils/log_util.dart') ||
         match.group(1)!.startsWith('dart-sdk/lib');
   }
 
@@ -139,7 +144,9 @@ class SingleLinePrinter extends LogPrinter {
       return false;
     }
     return match.group(1)!.startsWith('package:logger') ||
-        match.group(1)!.startsWith('package:flutter_module/utils/log_util.dart') ||
+        match
+            .group(1)!
+            .startsWith('package:flutter_module/utils/log_util.dart') ||
         match.group(1)!.startsWith('dart:');
   }
 

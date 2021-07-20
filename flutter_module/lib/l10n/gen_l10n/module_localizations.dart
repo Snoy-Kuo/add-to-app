@@ -148,6 +148,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This is {widgetName} Widget\n from module'**
   String thisIsFromModule(String widgetName);
+
+  /// No description provided for @rookie.
+  ///
+  /// In en, this message translates to:
+  /// **'Rookie'**
+  String get rookie;
+
+  /// No description provided for @veteran.
+  ///
+  /// In en, this message translates to:
+  /// **'Veteran'**
+  String get veteran;
+
+  /// No description provided for @articles.
+  ///
+  /// In en, this message translates to:
+  /// **'Articles'**
+  String get articles;
 }
 
 class _AppLocalizationsDelegate

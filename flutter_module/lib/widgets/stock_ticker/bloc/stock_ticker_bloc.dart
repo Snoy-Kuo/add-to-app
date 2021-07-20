@@ -9,7 +9,6 @@ import 'package:flutter_module/widgets/stock_ticker/model/quot_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'stock_ticker_event.dart';
-
 part 'stock_ticker_state.dart';
 
 class StockTickerBloc extends Bloc<StockTickerEvent, StockTickerState> {

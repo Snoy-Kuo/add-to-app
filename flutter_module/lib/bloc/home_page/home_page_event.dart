@@ -29,3 +29,12 @@ class UpdateQuot extends HomePageEvent {
   @override
   List<Object?> get props => [item];
 }
+
+class ChangeUserLv extends HomePageEvent {
+  final bool isRookie;
+
+  ChangeUserLv({required this.isRookie});
+
+  @override
+  List<Object?> get props => [isRookie];
+}

@@ -14,8 +14,10 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final appBloc = BlocProvider.of<AppBloc>(context);
     final channelCubit = BlocProvider.of<ChannelCubit>(context);
-    final String selectionButton =
-        _getSelection(appBloc.themeMode, L10n.of(context)!);
+    final String selectionThemeButton =
+        _getSelectionTheme(appBloc.themeMode, L10n.of(context)!);
+    final String selectionLvButton =
+        _getSelectionLv(appBloc.isRookie, L10n.of(context)!);
 
     return SafeArea(
       top: true,
@@ -29,7 +31,7 @@ class SettingsPage extends StatelessWidget {
             child: GroupButton(
               buttonWidth: MediaQuery.of(context).size.width / 3 - 5,
               isRadio: true,
-              selectedButtons: [selectionButton],
+              selectedButtons: [selectionThemeButton],
               selectedColor: Theme.of(context).accentColor,
               borderRadius: BorderRadius.all(Radius.circular(5)),
               spacing: 2,
@@ -78,6 +80,28 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           ),
+          Text(L10n.of(context)!.userLv),
+          Container(
+            width: double.infinity,
+            alignment: Alignment.centerRight,
+            child: GroupButton(
+              buttonWidth: MediaQuery.of(context).size.width / 3 - 5,
+              isRadio: true,
+              selectedButtons: [selectionLvButton],
+              selectedColor: Theme.of(context).accentColor,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              spacing: 2,
+              onSelected: (index, isSelected) {
+                bool isRookie = _isRookie(index);
+                appBloc.add(AppChangeUserLv(isRookie: isRookie));
+                channelCubit.emit(ClientChangeUserLv(isRookie: isRookie));
+              },
+              buttons: [
+                L10n.of(context)!.rookie,
+                L10n.of(context)!.veteran,
+              ],
+            ),
+          ),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width,
@@ -104,7 +128,7 @@ class SettingsPage extends StatelessWidget {
     }
   }
 
-  String _getSelection(ThemeMode mode, L10n l10n) {
+  String _getSelectionTheme(ThemeMode mode, L10n l10n) {
     switch (mode) {
       case ThemeMode.light:
         return l10n.light;
@@ -112,6 +136,25 @@ class SettingsPage extends StatelessWidget {
         return l10n.dark;
       default:
         return l10n.system;
+    }
+  }
+
+  bool _isRookie(int selection) {
+    switch (selection) {
+      case 0:
+        return true;
+      case 1:
+        return false;
+      default:
+        return true;
+    }
+  }
+
+  String _getSelectionLv(bool isRookie, L10n l10n) {
+    if (isRookie) {
+      return l10n.rookie;
+    } else {
+      return l10n.veteran;
     }
   }
 }

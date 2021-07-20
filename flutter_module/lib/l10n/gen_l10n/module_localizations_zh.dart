@@ -29,6 +29,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String thisIsFromModule(String widgetName) {
     return '这是在module中的\n $widgetName Widget';
   }
+
+  @override
+  String get rookie => '弱鸡';
+
+  @override
+  String get veteran => '老鸟';
+
+  @override
+  String get articles => '文章';
 }
 
 /// The translations for Chinese, as used in China (`zh_CN`).
@@ -60,6 +69,15 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
   String thisIsFromModule(String widgetName) {
     return '这是在module中的\n $widgetName Widget';
   }
+
+  @override
+  String get rookie => '弱鸡';
+
+  @override
+  String get veteran => '老鸟';
+
+  @override
+  String get articles => '文章';
 }
 
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
@@ -91,6 +109,15 @@ class AppLocalizationsZhHk extends AppLocalizationsZh {
   String thisIsFromModule(String widgetName) {
     return '這是在module中的\n $widgetName Widget';
   }
+
+  @override
+  String get rookie => '弱雞';
+
+  @override
+  String get veteran => '老鳥';
+
+  @override
+  String get articles => '文章';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -122,6 +149,15 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String thisIsFromModule(String widgetName) {
     return '这是在module中的\n $widgetName Widget';
   }
+
+  @override
+  String get rookie => '弱鸡';
+
+  @override
+  String get veteran => '老鸟';
+
+  @override
+  String get articles => '文章';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -153,6 +189,15 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String thisIsFromModule(String widgetName) {
     return '這是在module中的\n $widgetName Widget';
   }
+
+  @override
+  String get rookie => '弱雞';
+
+  @override
+  String get veteran => '老鳥';
+
+  @override
+  String get articles => '文章';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -184,4 +229,13 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String thisIsFromModule(String widgetName) {
     return '這是在module中的\n $widgetName Widget';
   }
+
+  @override
+  String get rookie => '弱雞';
+
+  @override
+  String get veteran => '老鳥';
+
+  @override
+  String get articles => '文章';
 }

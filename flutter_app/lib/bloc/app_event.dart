@@ -29,3 +29,12 @@ class AppSwitchRealtimeQuote extends AppEvent {
   @override
   List<Object?> get props => [isRealtime];
 }
+
+class AppChangeUserLv extends AppEvent {
+  final bool isRookie;
+
+  AppChangeUserLv({required this.isRookie});
+
+  @override
+  List<Object?> get props => [isRookie];
+}

@@ -8,7 +8,6 @@ import 'package:flutter_module/widgets/banner/model/banner_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'banner_event.dart';
-
 part 'banner_state.dart';
 
 class BannerBloc extends Bloc<BannerEvent, BannerState> {

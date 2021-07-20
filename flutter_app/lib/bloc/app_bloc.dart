@@ -18,6 +18,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   String languageMode = 'System';
   Locale locale = languageToLocale('System').supportLocale();
   bool isRealtime = false;
+  bool isRookie = true;
   late StreamSubscription realtimeSubs;
 
   AppBloc({required this.rtRepo, required this.chCubit}) : super(AppInitial()) {
@@ -49,6 +50,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         chCubit.emit(ClientUpdateQuot(item: item));
       });
       yield AppRealtimeQuotSwitched(isRealtime: isRealtime);
+    } else if (event is AppChangeUserLv) {
+      isRookie = event.isRookie;
     }
   }
 
