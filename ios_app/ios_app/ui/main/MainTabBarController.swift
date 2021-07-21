@@ -8,12 +8,13 @@
 import UIKit
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self //set TabBarViewController as UITabBarControllerDelegate
         self.selectedIndex = 0
-        
+//        tabBar.barStyle = .default
+        tabBar.isTranslucent = false
     }
     
     // UITabBarControllerDelegate

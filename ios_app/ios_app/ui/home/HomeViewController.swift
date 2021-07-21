@@ -11,6 +11,7 @@ class HomeViewController: FlutterViewController {
     let CLIENT_UPDATE_QUOT = "CLIENT_UPDATE_QUOT"
     let CLIENT_GET_LANGUAGE = "CLIENT_GET_LANGUAGE"
     let CLIENT_CHANGE_LANGUAGE = "CLIENT_CHANGE_LANGUAGE"
+    let CLIENT_CHANGE_USER_LV = "CLIENT_CHANGE_USER_LV"
     
     private var channel: FlutterMethodChannel?
     private let repo: RealtimeQuotRepo = MockRealtimeQuotRepo() //TODO: move to vm
@@ -38,6 +39,7 @@ class HomeViewController: FlutterViewController {
     override func viewDidLoad() {
         initChannel()
         initQuotUpdate()
+//        self.edgesForExtendedLayout = []
         super.viewDidLoad()
         
     }
@@ -128,6 +130,7 @@ class HomeViewController: FlutterViewController {
         super.viewDidAppear(animated)
         repo.toggleRealtimeQuote(enable: app.isRealtimeQuot)
         self.channel?.invokeMethod(CLIENT_CHANGE_LANGUAGE, arguments:app.selectedLanguage)
+        self.channel?.invokeMethod(CLIENT_CHANGE_USER_LV, arguments:app.isRookieUser)
     }
     
     override func viewWillDisappear(_ animated:Bool){

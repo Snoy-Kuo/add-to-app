@@ -25,3 +25,4 @@
 "this_is_settings_vc" = "This is Settings VC";
 "this_is_news_detail_vc" = "This is NewsDetail VC, \nid=%d";
 "this_is_quot_detail_vc" = "This is QuotDetail VC, , \nid=%@";
+"rookie_user" = "Rookie User:";

@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var sgAppreance: UISegmentedControl!
     @IBOutlet weak var swRealtime: UISwitch!
     @IBOutlet weak var tfLanguage: UITextField!
+    @IBOutlet weak var swRookieUser: UISwitch!
     
     private var aryLanguages = ["English", "简体中文", "繁體中文", "System"]
     private let app = (UIApplication.shared.delegate as! AppDelegate)
@@ -36,6 +37,9 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         tfLanguage.delegate = self
         createPickerView()
         dismissPickerView()
+        
+        swRookieUser.addTarget(self, action: #selector(self.switchRookieUser(sender:)), for: .valueChanged)
+        swRookieUser.isOn = app.isRookieUser
     }
     
     @objc func showFlutter(){
@@ -152,6 +156,11 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             let main: MainTabBarController = storyboard.instantiateViewController(identifier: "\(MainTabBarController.self)") as! MainTabBarController
             return main.navTo(page:2)
         }
+    }
+    
+    @objc func switchRookieUser(sender:UISwitch!)
+    {
+        app.isRookieUser = sender.isOn
     }
     
 }

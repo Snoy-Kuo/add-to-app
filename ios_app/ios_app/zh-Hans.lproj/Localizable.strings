@@ -25,3 +25,4 @@
 "this_is_settings_vc" = "这是 Settings VC";
 "this_is_news_detail_vc" = "这是 NewsDetail VC, \nid=%d";
 "this_is_quot_detail_vc" = "这是 QuotDetail VC, , \nid=%@";
+"rookie_user" = "弱鸡使用者：";
