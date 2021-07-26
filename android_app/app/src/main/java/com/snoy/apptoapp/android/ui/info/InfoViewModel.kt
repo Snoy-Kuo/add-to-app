@@ -21,6 +21,6 @@ class InfoViewModel : ViewModel() {
             4 -> context.getString(R.string.calendar_news)
             else -> "What News"
         }
-        _text.value = context.getString(R.string.this_is_info_widget, subIndexText)
+        _text.value = context.getString(R.string.this_is_info_fragment, subIndexText)
     }
 }

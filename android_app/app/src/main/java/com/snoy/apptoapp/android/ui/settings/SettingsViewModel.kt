@@ -8,7 +8,7 @@ import com.snoy.apptoapp.android.R
 class SettingsViewModel : ViewModel() {
 
     private val _textRes = MutableLiveData<Int>().apply {
-        value = R.string.this_is_settings_page
+        value = R.string.this_is_settings_fragment
     }
     val textRes: LiveData<Int> = _textRes
 }

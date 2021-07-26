@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_info">Info</string>
     <string name="title_settings">Settings</string>
-    <string name="this_is_info_widget">This is Info Widget,\nType=%s</string>
+    <string name="this_is_info_fragment">This is Info Fragment,\nType=%s</string>
     <string name="all_news">All News</string>
     <string name="good_news">Good News</string>
     <string name="bad_news">Bad News</string>
@@ -15,8 +15,8 @@
     <string name="system">System</string>
     <string name="language">Language:</string>
     <string name="realtime_quot">Realtime Quot:</string>
-    <string name="this_is_settings_page">This is Settings Page</string>
-    <string name="this_is_news_detail_page">This is NewsDetail Page, \nid=%d</string>
-    <string name="this_is_quot_detail_page">This is QuotDetail Page, , \nid=%s</string>
+    <string name="this_is_settings_fragment">This is Settings Fragment</string>
+    <string name="this_is_news_detail_activity">This is NewsDetail Activity, \nid=%d</string>
+    <string name="this_is_quot_detail_activity">This is QuotDetail Activity, , \nid=%s</string>
     <string name="rookie_user">Rookie User:</string>
 </resources>

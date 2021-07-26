@@ -4,7 +4,7 @@
     <string name="title_home">首页</string>
     <string name="title_info">资讯</string>
     <string name="title_settings">设定</string>
-    <string name="this_is_info_widget">这是 Info Widget,\n类型=%s</string>
+    <string name="this_is_info_fragment">这是 Info Fragment,\n类型=%s</string>
     <string name="all_news">所有消息</string>
     <string name="good_news">好消息</string>
     <string name="bad_news">坏消息</string>
@@ -16,8 +16,8 @@
     <string name="system">系统决定</string>
     <string name="language">语言:</string>
     <string name="realtime_quot">即时行情:</string>
-    <string name="this_is_settings_page">这是 Settings Page</string>
-    <string name="this_is_news_detail_page">这是 NewsDetail Page, \nid=%d</string>
-    <string name="this_is_quot_detail_page">这是 QuotDetail Page, \nid=%s</string>
+    <string name="this_is_settings_fragment">这是 Settings Fragment</string>
+    <string name="this_is_news_detail_activity">这是 NewsDetail Activity, \nid=%d</string>
+    <string name="this_is_quot_detail_activity">这是 QuotDetail Activity, \nid=%s</string>
     <string name="rookie_user">弱鸡使用者：</string>
 </resources>

@@ -40,7 +40,7 @@ class QuotDetailActivity : AppCompatActivity() {
         title = binding.title
 
         val id: String = intent.getStringExtra("id") ?: ""
-        content.text = getString(R.string.this_is_quot_detail_page, id)
+        content.text = getString(R.string.this_is_quot_detail_activity, id)
         val titleText: String = intent.getStringExtra("title") ?: ""
         title.text = titleText
     }

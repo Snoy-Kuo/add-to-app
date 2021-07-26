@@ -40,7 +40,7 @@ class NewsDetailActivity : AppCompatActivity() {
         title = binding.title
 
         val id: Int = intent.getIntExtra("id", -1)
-        content.text = getString(R.string.this_is_news_detail_page, id)
+        content.text = getString(R.string.this_is_news_detail_activity, id)
         val titleText: String = intent.getStringExtra("title") ?: ""
         title.text = titleText
     }
