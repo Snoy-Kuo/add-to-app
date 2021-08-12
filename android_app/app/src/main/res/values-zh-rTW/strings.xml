@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">App to App Android</string>
+    <string name="app_name">Add to App Android</string>
     <string name="title_home">首頁</string>
     <string name="title_info">資訊</string>
     <string name="title_settings">設定</string>

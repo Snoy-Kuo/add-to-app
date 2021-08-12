@@ -1,4 +1,4 @@
-rootProject.name = "App to App Android"
+rootProject.name = "Add to App Android"
 include ':app'
 setBinding(new Binding([gradle: this]))
 evaluate(new File(

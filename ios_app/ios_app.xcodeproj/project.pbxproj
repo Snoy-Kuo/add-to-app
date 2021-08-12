@@ -13,6 +13,7 @@
 		8C366F33265B9C8500760420 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F32265B9C8500760420 /* InfoViewController.swift */; };
 		8C366F36265BB50000760420 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F35265BB50000760420 /* MainTabBarController.swift */; };
 		8C366F38265CC7CE00760420 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */; };
+		8C70412926C51BC600BD126D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C70412826C51BC600BD126D /* WebKit.framework */; };
 		8C8E250A268EBA5C006147B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C8E250C268EBA5C006147B7 /* Localizable.strings */; };
 		8C8E2510268F18D0006147B7 /* LanguageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E250F268F18D0006147B7 /* LanguageUtil.swift */; };
 		8C8FC4EC2678525800C9A716 /* QuotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8FC4EB2678525800C9A716 /* QuotItem.swift */; };
@@ -35,6 +36,7 @@
 		8C366F32265B9C8500760420 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		8C366F35265BB50000760420 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8C366F37265CC7CE00760420 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		8C70412826C51BC600BD126D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8C8E250B268EBA5C006147B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C8E250D268EBB14006147B7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8C8E250E268EBB21006147B7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C70412926C51BC600BD126D /* WebKit.framework in Frameworks */,
 				57AD7A4FA0A56EAFBDC105C4 /* Pods_ios_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +183,7 @@
 		CFCA234333CD138CA3E98187 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C70412826C51BC600BD126D /* WebKit.framework */,
 				AF8D33A02EF6E39CC1634538 /* Pods_ios_app.framework */,
 			);
 			name = Frameworks;
@@ -414,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -470,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
