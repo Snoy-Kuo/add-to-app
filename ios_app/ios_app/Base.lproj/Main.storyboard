@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sCj-ud-fhK">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -141,7 +142,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="W9j-fO-x8j">
-                        <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="lbCenter" destination="xOj-Tf-oMu" id="RTi-6G-vgw"/>
@@ -210,20 +211,8 @@
                     <view key="view" contentMode="scaleToFill" id="8Io-2I-7cA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Home VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBW-s1-PYV">
-                                <rect key="frame" x="97" y="205" width="126" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="N9u-cu-nhW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="TBW-s1-PYV" firstAttribute="centerY" secondItem="N9u-cu-nhW" secondAttribute="centerY" id="aBo-fb-DqD"/>
-                            <constraint firstItem="TBW-s1-PYV" firstAttribute="centerX" secondItem="N9u-cu-nhW" secondAttribute="centerX" id="yho-y3-VSk"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="A43-v4-Ps0">
                         <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
@@ -348,7 +337,7 @@
         <segue reference="COL-ud-yyb"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
